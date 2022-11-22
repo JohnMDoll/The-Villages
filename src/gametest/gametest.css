@@ -1,0 +1,12 @@
+.cell {
+    display: flex;
+    border: 0.5px solid black;
+    justify-content: center;
+    align-items: center;
+    height: 4rem;
+    width: 4rem;
+}
+
+.cells--grid {
+    display: flex;
+}

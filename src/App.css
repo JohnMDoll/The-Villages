@@ -36,3 +36,8 @@
     transform: rotate(360deg);
   }
 }
+/* I did stuff under here, but not above */
+body{
+  background-color: rgb(87, 10, 10);
+  padding-left: 5%;
+}
