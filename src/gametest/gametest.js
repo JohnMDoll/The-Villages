@@ -2,10 +2,8 @@ import { useState } from "react"
 import "./gametest.css"
 
 export const Game = () => {
-    // let cellCount = 0 //for cumulative counting of cells for unique Id assignments
-    // let rowCount = 0 //vertical address counting
-    // let columnCount = 0 //horizontal address counting
-    const [gridLength, setGridLength] = useState(5) //how big the playing grid will be (it's a square, so just need 1 dimension)
+    const [gridLength, setGridLength] = useState(10) //how big the playing grid will be (it's a square, so just need 1 dimension)
+    // const 
     let i = 0 // i & j for row & column id/addresses assigned to each cell
     let j = 0
 
@@ -20,18 +18,37 @@ export const Game = () => {
             j = 0
         }
         console.log(allIds)
+        let anArray = []
         return <>
             {
-                allIds.map(cell => {return <div className="cell" id={cell} value="">{cell}</div>})
-            }
+                allIds.map(cell => {
+                    return <div key={cell}
+                        onClick={(evt) => {
+                            
+                            if (anArray.includes(cell)){
+                                let cellIndex = anArray.indexOf(cell)
+                                anArray.splice(cellIndex, 1) 
+                                console.log(anArray)
+                            } else {
+                                anArray.push(cell)
+                                console.log(anArray)
+                            }
+                    return [evt.target.checked=!evt.target.checked, console.log(evt), evt.target.className=anArray.includes(cell)? "active":"dead"]}} className="initialCell"  id={cell} value="">{cell}</div>
+    })
+}
         </>
     }
-    return <>
-        <section className="cells--grid">{
-            cellFactory()
-        }</section>
-    </>
+
+
+return <>
+    <section className="cells--grid">{
+        cellFactory()
+    }</section>
+</>
 }
+
+// if < 2:
+// .cell#`1--1`.checked = false
     //make a function that computes what each cell's status is on next generation render
     // const NeighborChecker = () => {
 
