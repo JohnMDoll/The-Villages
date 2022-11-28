@@ -5,8 +5,10 @@
     align-items: center;
     height: 4rem;
     width: 4rem;
+
 }
 
 .cells--grid {
-    display: flex;
+    display: grid;
+    grid-template-columns: 4rem 4rem 4rem 4rem 4rem;
 }
