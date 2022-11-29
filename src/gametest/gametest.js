@@ -1,76 +1,45 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { CellFactory } from "./cellFactory" //creates the initial "board" and allows manual cell state setting
+import { GameRunning } from "./GameRunner"
 import "./gametest.css"
 
 export const Game = () => {
-    const [gridLength, setGridLength] = useState(10) //how big the playing grid will be (it's a square, so just need 1 dimension)
-    // const 
-    let i = 0 // i & j for row & column id/addresses assigned to each cell
-    let j = 0
+    const [startOrStop, setStartOrStop] = useState(false) //we'll use this to track whether the game has been started yet, or stopped after starting
+    const [activeCellArray, setActiveCellArray] = useState([])
+    const [deadCellArray, setDeadCellArray] = useState([])
+    const [gameSource, setGameSource] = useState(
+        <CellFactory started={false}
+            activeCellArray={activeCellArray}
+            deadCellArray={deadCellArray} />
+    )
 
-    const cellFactory = () => { //Intended to make an html cell with all the necessary unique attributes
-        let allIds = []
-        while (i < gridLength) { //one loop to build each row's ids
-            i++
-            while (j < gridLength) { // another loop to build each column cell's id's within each row
-                j++
-                allIds.push(`${i}--${j}`)
+    useEffect(
+        () => {
+            //needs a timeout somewhere in here for game watchability. I don't know how to do one well yet
+            if (startOrStop === true) {
+                setGameSource(<GameRunning
+                    activeCellArray={activeCellArray}
+                    deadCellArray={deadCellArray} />)
+            } else if (startOrStop === false) {
+                // setMyThoughts("just stop, but eventually we'll have to save the state to somewhere for resuming")
             }
-            j = 0
-        }
-        console.log(allIds)
-        let anArray = []
-        return <>
-            {
-                allIds.map(cell => {
-                    return <div key={cell}
-                        onClick={(evt) => {
-                            
-                            if (anArray.includes(cell)){
-                                let cellIndex = anArray.indexOf(cell)
-                                anArray.splice(cellIndex, 1) 
-                                console.log(anArray)
-                            } else {
-                                anArray.push(cell)
-                                console.log(anArray)
-                            }
-                    return [evt.target.checked=!evt.target.checked, console.log(evt), evt.target.className=anArray.includes(cell)? "active":"dead"]}} className="initialCell"  id={cell} value="">{cell}</div>
-    })
-}
-        </>
+        },
+        [startOrStop]
+    )
+
+    const startbutton = (evt) => {
+        evt.preventDefault()
+        setStartOrStop(!startOrStop)
     }
 
-
-return <>
-    <section className="cells--grid">{
-        cellFactory()
-    }</section>
-</>
+    return <>
+        <article>
+            <section className="cells--grid">
+                {
+                    gameSource
+                }
+            </section>
+            <button onClick={startbutton}>start or stop</button>
+        </article>
+    </>
 }
-
-// if < 2:
-// .cell#`1--1`.checked = false
-    //make a function that computes what each cell's status is on next generation render
-    // const NeighborChecker = () => {
-
-
-    //     let aliveSilbings = 0;
-    //     aliveSilbings += (x, y + 1) ? 1 : 0;
-    //     aliveSilbings += (x + 1, y + 1) ? 1 : 0;
-    //     aliveSilbings += (x + 1, y) ? 1 : 0;
-    //     aliveSilbings += (x + 1, y - 1) ? 1 : 0;
-    //     aliveSilbings += (x, y - 1) ? 1 : 0;
-    //     aliveSilbings += (x - 1, y - 1) ? 1 : 0;
-    //     aliveSilbings += (x - 1, y) ? 1 : 0;
-    //     aliveSilbings += (x - 1, y + 1) ? 1 : 0;
-
-    //     const isAlive = (x, y);
-
-    //     // Cell live rules
-    //     if (isAlive) {
-    //         if (aliveSilbings >= 2 && aliveSilbings <= 3) return true;
-    //     }
-    //     else if (aliveSilbings === 3) return true;
-
-    //     return false;
-    // }
-    // return <> {aliveSilbings}</>
