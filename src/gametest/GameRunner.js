@@ -3,10 +3,10 @@ import { useEffect, useState } from "react"
 let i = 0 // i & j for row & column id/addresses assigned to each cell
 let j = 0
 
-export const GameRunning = ({ cellArray }) => { //Intended to make an html cell with all the necessary unique attributes
+export const GameRunning = ({ started, allCellReferences }) => { //Intended to make an html cell with all the necessary unique attributes
     const [gridLength, setGridLength] = useState(10) //how big the playing grid will be (it's a square, so just need 1 dimension)
     let allIds = []
-    let allCells = cellArray
+    let allCells = allCellReferences
     //on game start, repopulating allIds array with cell objects for rerendering in return statement?
     // activeCellArray.map(activeCell => {
     //     const thisCell = {}
@@ -69,8 +69,8 @@ export const GameRunning = ({ cellArray }) => { //Intended to make an html cell 
         {
             allCells.map(cell => {
                 return <div key={cell.address}
-                    onLoad={(evt) => {
-                        console.log(`${cell.address} onloaded`)
+                    onClick={(evt) => {
+                        console.log(`${cell.address} clicked on`)
                         // if (activeCellArray.includes(cell)) {
                         //     deadCellArray.push(cell)
                         //     let cellIndex = activeCellArray.indexOf(cell)
@@ -90,7 +90,7 @@ export const GameRunning = ({ cellArray }) => { //Intended to make an html cell 
                         //     evt.target.className = activeCellArray.includes(cell) ? "active" : "dead"
                         // ]
                     }}
-                    className={cell.status ? "active" : "dead"} id={cell.address} value="">
+                    className={cell.status === true ? "active" : cell.status === false ? "dead" : "initialCell"} id={cell.address} value="">
                     {cell.address}
                 </div>
             })

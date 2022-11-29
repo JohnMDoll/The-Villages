@@ -19,11 +19,11 @@ export const CellFactory = ({ started, allCellReferences, setAllCellReferences }
         j = 0
     }
 
-    let CellReferences = []
+    let CellReferences = allCellReferences
     allIds.map(Id => {
         const thisCell = {}
         thisCell.address = Id
-        thisCell.status = "initial"
+        thisCell.status = "initialCell"
         return CellReferences.push(thisCell)
     })
 
@@ -39,7 +39,7 @@ export const CellFactory = ({ started, allCellReferences, setAllCellReferences }
         return cellClass
     }
 
-    { if (started) return <GameRunning started={started} cellArray={allCellReferences} /> }
+    // { if (started) return <GameRunning started={started} allCellReferences={allCellReferences} /> }
     return <>
         {
             allCellReferences.map(cell => {
@@ -47,12 +47,12 @@ export const CellFactory = ({ started, allCellReferences, setAllCellReferences }
                     onClick={(evt) => {
                         if (cell.status === true) {
                             cell.status = (false)
-                            console.log(`Initialized cells: ${allCellReferences.filter(cell => cell.status === "initial")}`)
+                            console.log(`Initialized cells: ${allCellReferences.filter(cell => cell.status === "initialCell")}`)
                             console.log(`Active cells: ${allCellReferences.filter(cell => cell.status === true)}`)
                             console.log(`Dead cells: ${allCellReferences.filter(cell => cell.status === false)}`)
                         } else if (cell.status !== false) {
                             cell.status = (true)
-                            console.log(`Initialized cells: ${allCellReferences.filter(cell => cell.status === "initial")}`)
+                            console.log(`Initialized cells: ${allCellReferences.filter(cell => cell.status === "initialCell")}`)
                             console.log(`Active cells: ${allCellReferences.filter(cell => cell.status === true)}`)
                             console.log(`Dead cells: ${allCellReferences.filter(cell => cell.status === false)}`)
                         } //do we even need to change the div to checked or unchecked now? That was initially intended to give an addressable attribute
