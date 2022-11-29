@@ -19,10 +19,10 @@ export const CellFactory = ({ started, activeCellArray, deadCellArray }) => { //
         j = 0
     }
 
-    { if (started) return <GameRunning activeCellArray={activeCellArray} deadCellArray={deadCellArray} /> }
+    { if (started) return <GameRunning started={started} activeCellArray={activeCellArray} deadCellArray={deadCellArray} /> }
     return <>
         {
-            allIds.map(cell => { deadCellArray.push(cell)
+            allIds.map(cell => { deadCellArray.push(cell) //populate deadCellArray with all newly created cells, since they initially are inactive
                 return <div key={cell}
                     onClick={(evt) => {
                         if (activeCellArray.includes(cell)) {
