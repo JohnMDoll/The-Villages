@@ -3,23 +3,23 @@ import { useEffect, useState } from "react"
 let i = 0 // i & j for row & column id/addresses assigned to each cell
 let j = 0
 
-export const GameRunning = ({ activeCellArray, deadCellArray }) => { //Intended to make an html cell with all the necessary unique attributes
+export const GameRunning = ({ cellArray }) => { //Intended to make an html cell with all the necessary unique attributes
     const [gridLength, setGridLength] = useState(10) //how big the playing grid will be (it's a square, so just need 1 dimension)
     let allIds = []
+    let allCells = cellArray
     //on game start, repopulating allIds array with cell objects for rerendering in return statement?
-    activeCellArray.map(activeCell => {
-        const thisCell = {}
-        thisCell.address = activeCell
-        thisCell.status = true
-        return allIds.push(thisCell)
-    })
-    deadCellArray.map(deadCell => {
-        const thisCell = {}
-        thisCell.address = deadCell
-        thisCell.status = false
-        return allIds.push(thisCell)
-    })
-    // const flipper = true
+    // activeCellArray.map(activeCell => {
+    //     const thisCell = {}
+    //     thisCell.address = activeCell
+    //     thisCell.status = true
+    //     return allIds.push(thisCell)
+    // })
+    // deadCellArray.map(deadCell => {
+    //     const thisCell = {}
+    //     thisCell.address = deadCell
+    //     thisCell.status = false
+    //     return allIds.push(thisCell)
+    // })
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -67,7 +67,7 @@ export const GameRunning = ({ activeCellArray, deadCellArray }) => { //Intended 
 
     return <>
         {
-            allIds.map(cell => {
+            allCells.map(cell => {
                 return <div key={cell.address}
                     onLoad={(evt) => {
                         console.log(`${cell.address} onloaded`)

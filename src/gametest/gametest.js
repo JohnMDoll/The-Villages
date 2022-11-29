@@ -7,13 +7,13 @@ import "./gametest.css"
 
 export const Game = () => {
     const [startOrStop, setStartOrStop] = useState(false) //we'll use this to track whether the game has been started yet, or stopped after starting
-    const [activeCellArray, setActiveCellArray] = useState([])
-    const [deadCellArray, setDeadCellArray] = useState([])
+    const [allCellReferences, setAllCellReferences] = useState([])
     const [gameSource, setGameSource] = useState(
         <CellFactory 
             started={startOrStop} //start button active
-            activeCellArray={activeCellArray} //persisting active and dead cells across all game modules
-            deadCellArray={deadCellArray} />
+            allCellReferences={allCellReferences}
+            setAllCellReferences={setAllCellReferences} /> //persisting active and dead cells across all game modules
+            
     )
 
     useEffect(
@@ -22,8 +22,8 @@ export const Game = () => {
             if (startOrStop) {
                 setGameSource(<GameRunning
                     started={startOrStop}
-                    activeCellArray={activeCellArray}
-                    deadCellArray={deadCellArray} />)
+                    allCellReferences={allCellReferences}
+                    setAllCellReferences={setAllCellReferences} />)
             } else if (startOrStop === false) {
                 // setMyThoughts("just stop, but eventually we'll have to save the state to somewhere for resuming")
             }
