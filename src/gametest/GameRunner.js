@@ -5,6 +5,24 @@ let j = 0
 
 export const GameRunning = ({ started, allCellReferences }) => { //Intended to make an html cell with all the necessary unique attributes
     let allCells = allCellReferences
+    
+    const renderer = () => {
+        return <>
+            {
+                allCellReferences.map(cell => {
+                    return <div key={cell.address}
+                        onClick={(evt) => {
+                            console.log(`${cell.address} clicked on`)
+                        }}
+                        className={cell.status === true ? "active" : cell.status === false ? "dead" : "initialCell"} id={cell.address} value="">
+                        {cell.address}
+                    </div>
+                })
+            }
+        </>
+    }
+
+    const [display, setDisplay] = useState(renderer)
 
     allCellReferences.map((cell) => { //pull x/y coordinates for each cell for neighbor checking
         let [xCoord, yCoord] = cell.address.split("--")
@@ -74,37 +92,24 @@ export const GameRunning = ({ started, allCellReferences }) => { //Intended to m
     }
 
     useEffect(() => {
+        
         const interval = setInterval(() => {
             checkTheNeighborhood()
-            rerendererer()
+            setDisplay(renderer)
             // console.log(allCellReferences.filter(cell => cell.status === false))
             // console.log(allCellReferences.map(cell => [cell.address, cell.neighbors, cell.status]))
-        }, 100000)
+        }, 500)
         return () => clearInterval(interval)
     },
-        []
+        [allCellReferences]
     )
 
-    const rerendererer = () => {
-        return <>
-            {
-                allCells.map(cell => {
-                    return <div key={cell.address}
-                        onClick={(evt) => {
-                            console.log(`${cell.address} clicked on`)
-                        }}
-                        className={cell.status === true ? "active" : cell.status === false ? "dead" : "initialCell"} id={cell.address} value="">
-                        {cell.address}
-                    </div>
-                })
-            }
-        </>
-    }
 
-    let render = rerendererer()
+    // let render = displayerer()
+
     return <>
         {
-            render
+            display
         }
     </>
 }
