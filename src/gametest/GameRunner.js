@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react"
 // this module is responsible for the running state of the game
-let i = 0 // i & j for row & column id/addresses assigned to each cell
-let j = 0
 
 export const GameRunning = ({ started, allCellReferences }) => { //Intended to make an html cell with all the necessary unique attributes
     let allCells = allCellReferences
@@ -15,7 +13,7 @@ export const GameRunning = ({ started, allCellReferences }) => { //Intended to m
                             console.log(`${cell.address} clicked on`)
                         }}
                         className={cell.status === true ? "active" : cell.status === false ? "dead" : "initialCell"} id={cell.address} value="">
-                        {cell.address}
+                        {/* {cell.address} */}
                     </div>
                 })
             }
@@ -74,7 +72,7 @@ export const GameRunning = ({ started, allCellReferences }) => { //Intended to m
                 }
             })
         })
-
+        let previousGeneration = [...allCellReferences]
         allCellReferences = cellsCopy
 
         allCellReferences.map(currentGenCell => {
@@ -85,19 +83,16 @@ export const GameRunning = ({ started, allCellReferences }) => { //Intended to m
             } else if (currentGenCell.neighbors === 3) {
                 currentGenCell.status = true
             }
-            console.log(currentGenCell.address)
-            console.log(currentGenCell.status)
-            console.log(currentGenCell.neighbors)
+            // console.log(currentGenCell.address)
+            // console.log(currentGenCell.status)
+            // console.log(currentGenCell.neighbors)
         })
     }
-
+    // useEffect written to stop endless recalculation at maximum processing speed
     useEffect(() => {
-        
         const interval = setInterval(() => {
             checkTheNeighborhood()
             setDisplay(renderer)
-            // console.log(allCellReferences.filter(cell => cell.status === false))
-            // console.log(allCellReferences.map(cell => [cell.address, cell.neighbors, cell.status]))
         }, 500)
         return () => clearInterval(interval)
     },

@@ -6,7 +6,7 @@ let i = 0 // i & j for row & column id/addresses assigned to each cell
 let j = 0
 
 export const CellFactory = ({ started, allCellReferences, setAllCellReferences }) => { //Intended to make an html cell with all the necessary unique attributes
-    const [gridLength, setGridLength] = useState(10) //how big the playing grid will be (it's a square, so just need 1 dimension)
+    const [gridLength, setGridLength] = useState(30) //how big the playing grid will be (it's a square, so just need 1 dimension)
 
     let allIds = []
 
@@ -63,7 +63,7 @@ export const CellFactory = ({ started, allCellReferences, setAllCellReferences }
                         ]
                     }}
                     className="initialCell" id={cell.address} value="">
-                    {cell.address}
+                    {/* {cell.address} */}
                 </div>
             })
         }
