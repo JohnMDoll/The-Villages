@@ -3,8 +3,8 @@
     border: 0.5px solid black;
     justify-content: center;
     align-items: center;
-    height: 4rem;
-    width: 4rem;
+    height: 3rem;
+    width: 3rem;
 
 }
 .active {
@@ -12,9 +12,10 @@
     border: 0.5px solid black;
     justify-content: center;
     align-items: center;
-    height: 4rem;
-    width: 4rem;
-    background-image: url("./somedancers.gif");
+    height: 3rem;
+    width: 3rem;
+    /* background-image: url("./somedancers.gif"); */
+    background-image: url("./200w.webp");
     background-size: contain;
 
 }
@@ -23,8 +24,8 @@
     border: 0.5px solid black;
     justify-content: center;
     align-items: center;
-    height: 4rem;
-    width: 4rem;
+    height: 3rem;
+    width: 3rem;
     background-image: url("./dead.png");
     background-size: contain;
 
@@ -32,5 +33,10 @@
 
 .cells--grid {
     display: grid;
-    grid-template-columns: 4rem 4rem 4rem 4rem 4rem 4rem 4rem 4rem 4rem 4rem;
+    grid-template-columns: 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem;
+}
+
+body{
+    background-image: url("./background.jpg");
+    background-size: 100%;
 }
