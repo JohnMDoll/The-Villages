@@ -7,21 +7,13 @@ export const ApplicationViews = () => {
     const navigate = useNavigate()
     const [user, setUser] = useState()
 
-    // don't need now because Authorized module handles this?
-    // useEffect(
-    //     () => {
-    //         if (!user) { setUser(localStorage.getItem("user")) ? navigate("/") : navigate("login") }
-    //     },
-    //     [user]
-    // )
-
     return <Routes>
         <Route path="/" element={
             <>
                 <section className="applicationView">
                     <h1>Hi</h1>
                     <h3>We're Just Messing Around in Here</h3>
-                    <h6>(in the ApplicationViews file, just fyi)</h6>
+                    <h6>(this is in the ApplicationViews.js file, just fyi)</h6>
                 </section>
                 <Outlet />
             </>

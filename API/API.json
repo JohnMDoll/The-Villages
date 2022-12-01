@@ -1,11 +1,13 @@
 {
-    "users": [
-        {
-            "id": 1,
-            "name": "John Doll",
-            "userName": "john",
-            "password": "password!",
-            "isAdmin": true
-        }
-    ]
+  "users": [
+    {
+      "id": 1,
+      "userName": "John",
+      "isAdmin": true
+    },
+    {
+      "userName": "Steve",
+      "id": 2
+    }
+  ]
 }
