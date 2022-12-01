@@ -3,8 +3,6 @@ import { CellFactory } from "./cellFactory" //creates the initial "board" and al
 import { GameRunning } from "./GameRunner"
 import "./gametest.css"
 
-
-
 export const Game = () => {
     const [startOrStop, setStartOrStop] = useState(false) //we'll use this to track whether the game has been started yet, or stopped after starting
     const [allCellReferences, setAllCellReferences] = useState([])
@@ -36,11 +34,9 @@ export const Game = () => {
 
     return <>
         <article>
-            <section className="cells--grid">
                 {
                     gameSource
                 }
-            </section>
             <button onClick={startbutton}>start or stop</button>
         </article>
     </>

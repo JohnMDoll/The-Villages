@@ -7,6 +7,11 @@ let j = 0
 
 export const CellFactory = ({ started, allCellReferences, setAllCellReferences }) => { //Intended to make an html cell with all the necessary unique attributes
     const [gridLength, setGridLength] = useState(30) //how big the playing grid will be (it's a square, so just need 1 dimension)
+    const [village, setVillage] = useState({
+        name: "",
+        gridLength: 30,
+        userId: localStorage.getItem(JSON.stringify("cap_user").id)
+    })
 
     let allIds = []
 
@@ -27,45 +32,50 @@ export const CellFactory = ({ started, allCellReferences, setAllCellReferences }
         return CellReferences.push(thisCell)
     })
 
-    // setAllCellReferences(CellReferences)
-    
-    const cellClasser = (status) =>{
+    const cellClasser = (status) => {
         let cellClass = ""
-        if (status === true){
-             cellClass = "active"
-        } else if (status === false){
-             cellClass = "dead"
-        } else { cellClass = "initialCell"}
+        if (status === true) {
+            cellClass = "active"
+        } else if (status === false) {
+            cellClass = "dead"
+        } else { cellClass = "initialCell" }
         return cellClass
     }
 
     // { if (started) return <GameRunning started={started} allCellReferences={allCellReferences} /> }
     return <>
-        {
-            allCellReferences.map(cell => {
-                return <div key={cell.address}
-                    onClick={(evt) => {
-                        if (cell.status === true) {
-                            cell.status = (false)
-                            console.log(`Initialized cells: ${allCellReferences.filter(cell => cell.status === "initialCell")}`)
-                            console.log(`Active cells: ${allCellReferences.filter(cell => cell.status === true)}`)
-                            console.log(`Dead cells: ${allCellReferences.filter(cell => cell.status === false)}`)
-                        } else if (cell.status !== false) {
-                            cell.status = (true)
-                            console.log(`Initialized cells: ${allCellReferences.filter(cell => cell.status === "initialCell")}`)
-                            console.log(`Active cells: ${allCellReferences.filter(cell => cell.status === true)}`)
-                            console.log(`Dead cells: ${allCellReferences.filter(cell => cell.status === false)}`)
-                        } //do we even need to change the div to checked or unchecked now? That was initially intended to give an addressable attribute
-                        return [
-                            evt.target.checked = !evt.target.checked,
-                            // console.log(evt), 
-                            evt.target.className = cellClasser(cell.status) 
-                        ]
-                    }}
-                    className="initialCell" id={cell.address} value="">
-                    {/* {cell.address} */}
-                </div>
-            })
-        }
+        <section className="game--container">
+            <input required type="text" placeholder="Village Name">
+                
+            </input>
+            <section className="cells--grid">
+                {
+                    allCellReferences.map(cell => {
+                        return <div key={cell.address}
+                            onClick={(evt) => {
+                                if (cell.status === true) {
+                                    cell.status = ("initialCell")
+                                    // console.log(`Initialized cells: ${allCellReferences.filter(cell => cell.status === "initialCell")}`)
+                                    // console.log(`Active cells: ${allCellReferences.filter(cell => cell.status === true)}`)
+                                    // console.log(`Dead cells: ${allCellReferences.filter(cell => cell.status === false)}`)
+                                } else if (cell.status !== false) {
+                                    cell.status = (true)
+                                    // console.log(`Initialized cells: ${allCellReferences.filter(cell => cell.status === "initialCell")}`)
+                                    // console.log(`Active cells: ${allCellReferences.filter(cell => cell.status === true)}`)
+                                    // console.log(`Dead cells: ${allCellReferences.filter(cell => cell.status === false)}`)
+                                } //do we even need to change the div to checked or unchecked now? That was initially intended to give an addressable attribute
+                                return [
+                                    evt.target.checked = !evt.target.checked,
+                                    // console.log(evt), 
+                                    evt.target.className = cellClasser(cell.status)
+                                ]
+                            }}
+                            className="initialCell" id={cell.address} value="">
+                            {/* {cell.address} */}
+                        </div>
+                    })
+                }
+            </section>
+        </section>
     </>
 }
