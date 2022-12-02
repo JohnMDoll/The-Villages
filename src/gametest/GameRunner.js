@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 // this module is responsible for the running state of the game
 
-export const GameRunning = ({ started, allCellReferences }) => { //Intended to make an html cell with all the necessary unique attributes
+export const GameRunning = ({ started, allCellReferences, gridLength }) => { //Intended to make an html cell with all the necessary unique attributes
     let allCells = allCellReferences
     
     const renderer = () => {
@@ -13,7 +13,7 @@ export const GameRunning = ({ started, allCellReferences }) => { //Intended to m
                             console.log(`${cell.address} clicked on`)
                         }}
                         className={cell.status === true ? "active" : cell.status === false ? "dead" : "initialCell"} id={cell.address} value="">
-                        {/* {cell.address} */}
+                        {cell.address}
                     </div>
                 })
             }

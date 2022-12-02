@@ -6,9 +6,22 @@ import "./gametest.css"
 export const Game = () => {
     const [startOrStop, setStartOrStop] = useState(false) //we'll use this to track whether the game has been started yet, or stopped after starting
     const [allCellReferences, setAllCellReferences] = useState([])
+    const [gridLength, setGridLength] = useState(10) //how big the playing grid will be (it's a square, so just need 1 dimension)
+
+     const [village, setVillage] = useState({
+        name: "",
+        gridLength: gridLength,
+        userId: (JSON.parse(localStorage.getItem("cap_user")).id)
+    })
+
     const [gameSource, setGameSource] = useState(
         <CellFactory 
             started={startOrStop} //start button active
+            setAllCellReferences={setAllCellReferences}
+            village={village}
+            setVillage={setVillage}
+            gridLength={gridLength}
+            setGridLength={setGridLength}
             allCellReferences={allCellReferences} /> //persisting active and dead cells across all game modules
             
     )
@@ -19,6 +32,8 @@ export const Game = () => {
             if (startOrStop) {
                 setGameSource(<GameRunning
                     started={startOrStop}
+                    village={village}
+                    gridLength={gridLength}
                     allCellReferences={allCellReferences} />)
             } else if (startOrStop === false) {
                 // setMyThoughts("just stop, but eventually we'll have to save the state to somewhere for resuming")
