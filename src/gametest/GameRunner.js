@@ -13,7 +13,7 @@ export const GameRunning = ({ started, allCellReferences }) => { //Intended to m
                             console.log(`${cell.address} clicked on`)
                         }}
                         className={cell.status === true ? "active" : cell.status === false ? "dead" : "initialCell"} id={cell.address} value="">
-                        {cell.address}
+                        {/* {cell.address} */}
                     </div>
                 })
             }
@@ -83,9 +83,6 @@ export const GameRunning = ({ started, allCellReferences }) => { //Intended to m
             } else if (currentGenCell.neighbors === 3) {
                 currentGenCell.status = true
             }
-            // console.log(currentGenCell.address)
-            // console.log(currentGenCell.status)
-            // console.log(currentGenCell.neighbors)
         })
     }
     // useEffect written to stop endless recalculation at maximum processing speed
@@ -98,9 +95,6 @@ export const GameRunning = ({ started, allCellReferences }) => { //Intended to m
     },
         [allCellReferences]
     )
-
-
-    // let render = displayerer()
 
     return <>
         <section className={`cells--grid--${gridLength}`}>

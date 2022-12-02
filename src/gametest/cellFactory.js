@@ -7,8 +7,6 @@ import { GameRunning } from "./GameRunner"
 export const CellFactory = ({ started, allCellReferences, village, setVillage, gridLength, gridLengthSetterFunction }) => { //Intended to make an html cell with all the necessary unique attributes
     
     const [GridLength, SetGridLength] = useState(gridLength) //how big the playing grid will be (it's a square, so just need 1 dimension)
-    // let GridLength = gridLength
-    // const SetGridLength = setGridLength
     let Village = village
     const SetVillage = setVillage
     // const [village, setVillage] = useState({
@@ -24,13 +22,9 @@ export const CellFactory = ({ started, allCellReferences, village, setVillage, g
                     if (cell.status === true) {
                         cell.status = ("initialCell")
                         // console.log(`Initialized cells: ${allCellReferences.filter(cell => cell.status === "initialCell")}`)
-                        // console.log(`Active cells: ${allCellReferences.filter(cell => cell.status === true)}`)
-                        // console.log(`Dead cells: ${allCellReferences.filter(cell => cell.status === false)}`)
                     } else if (cell.status !== false) {
                         cell.status = (true)
                         // console.log(`Initialized cells: ${allCellReferences.filter(cell => cell.status === "initialCell")}`)
-                        // console.log(`Active cells: ${allCellReferences.filter(cell => cell.status === true)}`)
-                        // console.log(`Dead cells: ${allCellReferences.filter(cell => cell.status === false)}`)
                     } //do we even need to change the div to checked or unchecked now? That was initially intended to give an addressable attribute
                     return [
                         evt.target.checked = !evt.target.checked,
@@ -39,7 +33,7 @@ export const CellFactory = ({ started, allCellReferences, village, setVillage, g
                     ]
                 }}
                 className="initialCell" id={cell.address} value="">
-                {cell.address}
+                {/* {cell.address} */}
             </div>
         })
     }
