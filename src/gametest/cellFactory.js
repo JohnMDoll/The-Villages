@@ -4,14 +4,18 @@ import { GameRunning } from "./GameRunner"
 
 
 
-export const CellFactory = ({ started, allCellReferences, setAllCellReferences, village, setVillage, gridLength, setGridLength }) => { //Intended to make an html cell with all the necessary unique attributes
-    const [gridLength, setGridLength] = useState(10) //how big the playing grid will be (it's a square, so just need 1 dimension)
-
-    const [village, setVillage] = useState({
-        name: "",
-        gridLength: gridLength,
-        userId: (JSON.parse(localStorage.getItem("cap_user")).id)
-    })
+export const CellFactory = ({ started, allCellReferences, village, setVillage, gridLength, gridLengthSetterFunction }) => { //Intended to make an html cell with all the necessary unique attributes
+    
+    const [GridLength, SetGridLength] = useState(gridLength) //how big the playing grid will be (it's a square, so just need 1 dimension)
+    // let GridLength = gridLength
+    // const SetGridLength = setGridLength
+    let Village = village
+    const SetVillage = setVillage
+    // const [village, setVillage] = useState({
+    //     name: "",
+    //     gridLength: gridLength,
+    //     userId: (JSON.parse(localStorage.getItem("cap_user")).id)
+    // })
 
     const GridMaker = () => {
         return allCellReferences.map(cell => {
@@ -44,15 +48,16 @@ export const CellFactory = ({ started, allCellReferences, setAllCellReferences, 
 
     useEffect(
         () => {
-            let copy = { ...village }
-            copy.gridLength = gridLength
+            let copy = { ...Village }
+            copy.gridLength = GridLength
+            // setVillage(copy) //left from village being a local state only
             setVillage(copy)
             let allIds = [] //will hold unique grid element ids
             let i = 0 // i & j for row & column id/addresses assigned to each cell
             let j = 0
-            while (i < gridLength) { //one loop to build each row's ids
+            while (i < GridLength) { //one loop to build each row's ids
                 i++
-                while (j < gridLength) { // another loop to build each column cell's id's within each row
+                while (j < GridLength) { // another loop to build each column cell's id's within each row
                     j++
                     allIds.push(`${i}--${j}`)
                 }
@@ -70,7 +75,7 @@ export const CellFactory = ({ started, allCellReferences, setAllCellReferences, 
                 return CellReferences.push(thisCell)
             })
             setGrid(GridMaker())
-        }, [gridLength]
+        }, [GridLength]
     )
 
     const cellClasser = (status) => {
@@ -92,7 +97,7 @@ export const CellFactory = ({ started, allCellReferences, setAllCellReferences, 
                     <input required type="text" placeholder="Village Name" />
                 </label>
                 <label>Square Size:
-                    <select onChange={(evt) => { return setGridLength(parseInt(evt.target.value)) }} defaultValue={0}>
+                    <select onChange={(evt) => {return [ SetGridLength(parseInt(evt.target.value)), gridLengthSetterFunction(parseInt(evt.target.value)) ]}} defaultValue={0}>
                         <option value={10}>10</option>
                         <option value={20}>20</option>
                         <option value={30}>30</option>
@@ -100,7 +105,7 @@ export const CellFactory = ({ started, allCellReferences, setAllCellReferences, 
                     units
                 </label>
             </div>
-            <section className={`cells--grid--${gridLength}`}>
+            <section className={`cells--grid--${GridLength}`}>
                 {
                     grid
                 }

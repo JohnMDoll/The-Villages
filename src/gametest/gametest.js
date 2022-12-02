@@ -17,11 +17,10 @@ export const Game = () => {
     const [gameSource, setGameSource] = useState(
         <CellFactory 
             started={startOrStop} //start button active
-            setAllCellReferences={setAllCellReferences}
             village={village}
             setVillage={setVillage}
             gridLength={gridLength}
-            setGridLength={setGridLength}
+            gridLengthSetterFunction={setGridLength}
             allCellReferences={allCellReferences} /> //persisting active and dead cells across all game modules
             
     )
@@ -32,8 +31,8 @@ export const Game = () => {
             if (startOrStop) {
                 setGameSource(<GameRunning
                     started={startOrStop}
-                    village={village}
-                    gridLength={gridLength}
+                    // village={village}
+                    // gridLength={gridLength}
                     allCellReferences={allCellReferences} />)
             } else if (startOrStop === false) {
                 // setMyThoughts("just stop, but eventually we'll have to save the state to somewhere for resuming")

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 // this module is responsible for the running state of the game
 
-export const GameRunning = ({ started, allCellReferences, gridLength }) => { //Intended to make an html cell with all the necessary unique attributes
+export const GameRunning = ({ started, allCellReferences }) => { //Intended to make an html cell with all the necessary unique attributes
     let allCells = allCellReferences
-    
+    let gridLength = Math.sqrt(allCells.length)
     const renderer = () => {
         return <>
             {
@@ -103,8 +103,10 @@ export const GameRunning = ({ started, allCellReferences, gridLength }) => { //I
     // let render = displayerer()
 
     return <>
-        {
-            display
-        }
+        <section className={`cells--grid--${gridLength}`}>
+            {
+                display
+            }
+        </section>
     </>
 }
