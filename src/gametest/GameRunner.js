@@ -74,27 +74,11 @@ export const GameRunning = ({ started, startedSetterFunction, allCellReferences,
                 }
             })
         })
+
         // setting up a check to see if a steady state has been reached, either all dead or just repetitive
-
-
         allCellReferences = cellsCopy.map((c => { return c }))
-        console.log("allCellReferences updated, staleness check pending")
-        console.log(allCellReferences.map(a => a.status))
-        console.log(previousGen.map(a => a.status))
-        console.log(previousPreviousGen.map(a => a.status))
-        // if previous or previous-previous generation is same as current, save genCount as maxGeneration in village object
-        if (previousPreviousGen.length > 1 && previousGen.length > 1 && JSON.stringify(allCellReferences.map(a => a.status)) === JSON.stringify(previousGen.map(a => a.status)) || JSON.stringify(allCellReferences.map(a => a.status)) === JSON.stringify(previousPreviousGen.map(a => a.status))) {
-            console.log("stale confirmed")
-            let copy = { ...village }
-            if (!villageCopy.hasOwnProperty('maxGenerations')) {
-                copy.maxGenerations = parseInt(Math.min(genCount))
-                setVillageCopy(copy)
-                villageSetterFunction(copy)
-                startedSetterFunction(false)
-            }
-        }
 
-        console.log("stale check complete")
+ 
         allCellReferences.map(currentGenCell => {
             if (currentGenCell.status === true && currentGenCell.neighbors === 2 || currentGenCell.neighbors === 3) {
                 currentGenCell.status = true
@@ -104,16 +88,40 @@ export const GameRunning = ({ started, startedSetterFunction, allCellReferences,
                 currentGenCell.status = true
             }
         })
+
+        console.log("allCellReferences updated, staleness check pending")
+        console.log(allCellReferences.map(a => a.status))
+        console.log(previousGen.map(a => a.status))
+        console.log(previousPreviousGen.map(a => a.status))
+
+        // if previous or previous-previous generation is same as current, save genCount as maxGeneration in village object
+        if (previousPreviousGen.length > 1 && previousGen.length > 1 && JSON.stringify(allCellReferences.map(a => a.status)) === JSON.stringify(previousGen.map(a => a.status)) || JSON.stringify(allCellReferences.map(a => a.status)) === JSON.stringify(previousPreviousGen.map(a => a.status))) {
+            console.log("stale confirmed")
+            let copy = { ...village }
+            if (!villageCopy.hasOwnProperty('maxGenerations')) {
+                copy.maxGenerations = parseInt(Math.min(genCount))
+                setVillageCopy(copy)
+                villageSetterFunction(copy)
+
+            }
+        }
+      console.log("stale check complete")
+        
     }
 
     // useEffect written to stop endless recalculation at maximum processing speed
     useEffect(() => {
-        const interval = setInterval(() => {
-            checkTheNeighborhood(previousGen, previousPreviousGen)
-            setDisplay(renderer)
-            setGenCount(genCount++)
-        }, 5000)
-        return () => clearInterval(interval)
+        if (!villageCopy.hasOwnProperty('maxGenerations')) {
+            const interval = setInterval(() => {
+                checkTheNeighborhood(previousGen, previousPreviousGen)
+                setDisplay(renderer)
+                setGenCount(genCount++)
+            }, 1000)
+            return () => clearInterval(interval)
+        } else {
+            console.log("it's dead Jim")
+            startedSetterFunction(false)
+        }
     },
         [previousGen, previousPreviousGen]
     )

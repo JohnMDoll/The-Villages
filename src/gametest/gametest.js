@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { CellFactory } from "./cellFactory" //creates the initial "board" and allows manual cell state setting
 import { GameRunning } from "./GameRunner"
 import "./gametest.css"
 
 export const Game = () => {
+    const navigate = useNavigate()
     const [startOrStop, setStartOrStop] = useState(false) //we'll use this to track whether the game has been started yet, or stopped after starting
     const [allCellReferences, setAllCellReferences] = useState([])
     const [gridLength, setGridLength] = useState(10) //how big the playing grid will be (it's a square, so just need 1 dimension)
@@ -39,7 +41,12 @@ export const Game = () => {
                     />
                 )
             } else if (startOrStop === false) {
-                // setMyThoughts("just stop, but eventually we'll have to save the state to somewhere for resuming")
+                if (village.hasOwnProperty("maxGenerations")) {
+                    ///////// I think put a save confirm window here after making a fetch function for saving////////
+                    if (window.confirm("It got boring.\nWould you like to create a new village?")) {
+                        window.location.reload()
+                    } else { navigate("/") }
+                }
             }
         },
         [startOrStop]
