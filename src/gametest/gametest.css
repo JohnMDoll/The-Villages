@@ -47,7 +47,7 @@
     grid-template-columns: 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem;
 }
 
-.village--form{
+.village--form {
     display: flex;
     flex-direction: column;
 }
@@ -55,3 +55,11 @@
     background-image: url("./background.jpg");
     background-size: 100%;
 } */
+
+select {
+    margin-inline: 5px;
+}
+
+input {
+    margin-inline: 5px;
+}

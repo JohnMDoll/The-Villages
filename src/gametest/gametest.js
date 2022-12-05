@@ -8,32 +8,36 @@ export const Game = () => {
     const [allCellReferences, setAllCellReferences] = useState([])
     const [gridLength, setGridLength] = useState(10) //how big the playing grid will be (it's a square, so just need 1 dimension)
 
-     const [village, setVillage] = useState({
+    const [village, setVillage] = useState({
         name: "",
         gridLength: gridLength,
         userId: (JSON.parse(localStorage.getItem("cap_user")).id)
     })
 
     const [gameSource, setGameSource] = useState(
-        <CellFactory 
+        <CellFactory
             started={startOrStop} //start button active
             village={village}
-            setVillage={setVillage}
+            villageSetterFunction={setVillage}
             gridLength={gridLength}
             gridLengthSetterFunction={setGridLength}
-            allCellReferences={allCellReferences} /> //persisting active and dead cells across all game modules
-            
+            allCellReferences={allCellReferences}
+        /> //persisting active and dead cells across all game modules
     )
 
     useEffect(
         () => {
             //needs a timeout somewhere in here for game watchability. I don't know how to do one well yet
             if (startOrStop) {
-                setGameSource(<GameRunning
-                    started={startOrStop}
-                    // village={village}
-                    // gridLength={gridLength}
-                    allCellReferences={allCellReferences} />)
+                setGameSource(
+                    <GameRunning
+                        started={startOrStop}
+                        startedSetterFunction={setStartOrStop}
+                        village={village}
+                        villageSetterFunction={setVillage}
+                        allCellReferences={allCellReferences}
+                    />
+                )
             } else if (startOrStop === false) {
                 // setMyThoughts("just stop, but eventually we'll have to save the state to somewhere for resuming")
             }
@@ -48,9 +52,9 @@ export const Game = () => {
 
     return <>
         <article>
-                {
-                    gameSource
-                }
+            {
+                gameSource
+            }
             <button onClick={startbutton}>start or stop</button>
         </article>
     </>

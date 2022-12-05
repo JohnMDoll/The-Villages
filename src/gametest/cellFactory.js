@@ -1,19 +1,11 @@
 import { useEffect, useState } from "react"
 import { GameRunning } from "./GameRunner"
-// this module sets up the initial "game board" and tracks alive/dead cells. Maybe the alive/dead tracking gets moved to a different component later
+// this module is responsible for initial manual "village" setup
 
+export const CellFactory = ({ started, allCellReferences, village, villageSetterFunction, gridLength, gridLengthSetterFunction }) => {
 
-
-export const CellFactory = ({ started, allCellReferences, village, setVillage, gridLength, gridLengthSetterFunction }) => { //Intended to make an html cell with all the necessary unique attributes
-    
     const [GridLength, SetGridLength] = useState(gridLength) //how big the playing grid will be (it's a square, so just need 1 dimension)
-    let Village = village
-    const SetVillage = setVillage
-    // const [village, setVillage] = useState({
-    //     name: "",
-    //     gridLength: gridLength,
-    //     userId: (JSON.parse(localStorage.getItem("cap_user")).id)
-    // })
+    const [villageCopy, setVillageCopy] = useState(village)
 
     const GridMaker = () => {
         return allCellReferences.map(cell => {
@@ -42,10 +34,11 @@ export const CellFactory = ({ started, allCellReferences, village, setVillage, g
 
     useEffect(
         () => {
-            let copy = { ...Village }
+            let copy = { ...villageCopy }
             copy.gridLength = GridLength
             // setVillage(copy) //left from village being a local state only
-            setVillage(copy)
+            villageSetterFunction(copy)
+            setVillageCopy(copy)
             let allIds = [] //will hold unique grid element ids
             let i = 0 // i & j for row & column id/addresses assigned to each cell
             let j = 0
@@ -58,8 +51,8 @@ export const CellFactory = ({ started, allCellReferences, village, setVillage, g
                 j = 0
             }
 
-            console.log(allIds)
-            let CellReferences = allCellReferences //pulling prop into code
+            // console.log(allIds)
+            let CellReferences = allCellReferences //copying prop into code
             CellReferences.splice(0, CellReferences.length)
 
             allIds.map(Id => {
@@ -82,16 +75,25 @@ export const CellFactory = ({ started, allCellReferences, village, setVillage, g
         return cellClass
     }
 
-
     // { if (started) return <GameRunning started={started} allCellReferences={allCellReferences} /> }
     return <>
         <section className="game--container">
             <div className="village--form">
                 <label>Village Name:
-                    <input required type="text" placeholder="Village Name" />
+                    <input required type="text"
+                        onChange={(evt) => {
+                            let copy = { ...village }
+                            copy.name = evt.target.value
+                            return [villageSetterFunction(copy), setVillageCopy(copy)]
+                        }}
+                        placeholder="Village Name" />
                 </label>
                 <label>Square Size:
-                    <select onChange={(evt) => {return [ SetGridLength(parseInt(evt.target.value)), gridLengthSetterFunction(parseInt(evt.target.value)) ]}} defaultValue={0}>
+                    <select onChange={(evt) => {
+                        return [SetGridLength(parseInt(evt.target.value)),
+                        gridLengthSetterFunction(parseInt(evt.target.value))] 
+                        }} 
+                        >
                         <option value={10}>10</option>
                         <option value={20}>20</option>
                         <option value={30}>30</option>
