@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { VillageSaver } from "../fetching/Fetching"
 import { CellFactory } from "./cellFactory" //creates the initial "board" and allows manual cell state setting
 import { GameRunning } from "./GameRunner"
 import "./gametest.css"
@@ -54,6 +55,9 @@ export const Game = () => {
 
     const startbutton = (evt) => {
         evt.preventDefault()
+        if (!village.hasOwnProperty("maxGenerations")) {
+            VillageSaver(village, allCellReferences)
+        }
         setStartOrStop(!startOrStop)
     }
 

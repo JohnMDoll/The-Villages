@@ -68,3 +68,36 @@ export const RegisterNewUser = (userName) => {
         })
 }
 
+export const MaxGenPutter = (villageObj) => {
+    return fetch(`http://localhost:8088/villages/${villageObj.id}`,   {
+    method: "PUT",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        userId: villageObj.userId,
+        maxGenerations: villageObj.maxGenerations,
+        name: villageObj.name,
+        gridLength: villageObj.gridLength,
+        seed: villageObj.seed
+    })
+})
+}
+
+export const VillageSaver = (villageObj, seedObj) => {
+    return fetch("http://localhost:8088/villages",   {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        userId: villageObj.userId,
+        name: villageObj.name,
+        gridLength: villageObj.gridLength,
+        seed: seedObj
+    })
+})
+    .then(res=> res.json())
+    // .then(res => console.log(res))
+    .then(res => [villageObj.id, villageObj.seed] = [res.id, res.seed])
+}
