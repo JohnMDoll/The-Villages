@@ -107,3 +107,25 @@ export const GetUserVillages = (user, setterFunction) => {
         .then(res => res.json())
         .then(res => setterFunction(res))
 }
+
+export const NameyChangey = () => {
+    fetch("http://localhost:8088/villages?", {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            // userId: villageObj.userId,
+            // villageName: villageObj.villageName,
+            // gridLength: villageObj.gridLength,
+            // seed: seedObj
+        })
+    })
+        .then(res => res.json())
+}
+
+export const RazeTheVillage = (id) => {
+    return fetch(`http://localhost:8088/villages/${id}`, {
+        method: "DELETE"
+    })
+}
