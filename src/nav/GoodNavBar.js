@@ -7,16 +7,15 @@ export const NavBar = () => {
 
     return <>
         <section className="navbar">
-            <div className="navdiv" id="user" onClick={() => { navigate("/") }}>
+            <div key="nav1" className="navdiv" id="user" onClick={() => { navigate("home") }}>
                 {user.userName}'s Domain
             </div>
-            <div className="navdiv" onClick={() => { navigate("game", { replace: false }) }}>
+            <div key="nav2" className="navdiv" onClick={() => { navigate("game", { replace: false }) }}>
                 Game
             </div>
-            <div className="navdiv" onClick={() => { return [localStorage.removeItem("cap_user"), navigate("login", { replace: false })] }}>
+            <div key="nav3" className="navdiv" onClick={() => { return [localStorage.removeItem("cap_user"), navigate("login", { replace: false })] }}>
                 Log Out
             </div>
         </section>
     </>
-
 }

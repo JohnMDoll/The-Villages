@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { Outlet, Route, Routes, useNavigate } from "react-router-dom/dist"
 import { Game } from "../gametest/gametest"
 import { Login } from "../login/Login"
+import { Home } from "./home"
 
 export const ApplicationViews = () => {
     const navigate = useNavigate()
@@ -19,6 +20,7 @@ export const ApplicationViews = () => {
             </>
         }>
             <Route path="game" element={<Game />}/>
+            <Route path="home" element={<Home />}/>
             <Route />
         </Route>
     </Routes>

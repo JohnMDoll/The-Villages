@@ -83,7 +83,7 @@ export const CellFactory = ({ started, allCellReferences, village, villageSetter
                     <input required type="text"
                         onChange={(evt) => {
                             let copy = { ...village }
-                            copy.name = evt.target.value
+                            copy.villageName = evt.target.value
                             return [villageSetterFunction(copy), setVillageCopy(copy)]
                         }}
                         placeholder="Village Name" />

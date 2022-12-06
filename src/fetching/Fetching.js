@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom"
 
 //generic user fetching function? maybe useful, maybe not, but we'll try it in some places
 const NavigateFunction = (words) => {
-    let navigate=useNavigate(words)
+    let navigate = useNavigate(words)
     return navigate
 }
 
@@ -69,35 +69,41 @@ export const RegisterNewUser = (userName) => {
 }
 
 export const MaxGenPutter = (villageObj) => {
-    return fetch(`http://localhost:8088/villages/${villageObj.id}`,   {
-    method: "PUT",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-        userId: villageObj.userId,
-        maxGenerations: villageObj.maxGenerations,
-        name: villageObj.name,
-        gridLength: villageObj.gridLength,
-        seed: villageObj.seed
+    return fetch(`http://localhost:8088/villages/${villageObj.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            userId: villageObj.userId,
+            maxGenerations: villageObj.maxGenerations,
+            villageName: villageObj.villageName,
+            gridLength: villageObj.gridLength,
+            seed: villageObj.seed
+        })
     })
-})
 }
 
 export const VillageSaver = (villageObj, seedObj) => {
-    return fetch("http://localhost:8088/villages",   {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-        userId: villageObj.userId,
-        name: villageObj.name,
-        gridLength: villageObj.gridLength,
-        seed: seedObj
+    return fetch("http://localhost:8088/villages", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            userId: villageObj.userId,
+            villageName: villageObj.villageName,
+            gridLength: villageObj.gridLength,
+            seed: seedObj
+        })
     })
-})
-    .then(res=> res.json())
-    // .then(res => console.log(res))
-    .then(res => [villageObj.id, villageObj.seed] = [res.id, res.seed])
+        .then(res => res.json())
+        // .then(res => console.log(res))
+        .then(res => [villageObj.id, villageObj.seed] = [res.id, res.seed])
+}
+
+export const GetUserVillages = (user, setterFunction) => {
+    return fetch(`http://localhost:8088/villages?userId=${user}`)
+        .then(res => res.json())
+        .then(res => setterFunction(res))
 }

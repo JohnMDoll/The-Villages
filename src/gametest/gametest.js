@@ -33,7 +33,7 @@ export const Game = () => {
             //needs a timeout somewhere in here for game watchability. I don't know how to do one well yet
             if (startOrStop) {
                 setGameSource(
-                    <GameRunning
+                    <GameRunning key="runit"
                         started={startOrStop}
                         startedSetterFunction={setStartOrStop}
                         village={village}
