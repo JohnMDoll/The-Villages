@@ -15,9 +15,9 @@ export const Home = () => {
 
     useEffect(
         () => {
-            const oldOne = villageList?.reduce((a, b) => { return a.maxGenerations > b.maxGenerations ? a : b })
+            const oldOne = villageList.reduce((a, b) => { return a.maxGenerations > b.maxGenerations ? a : b })
             setOldVillage(oldOne)
-            const newOne = villageList?.reduce((a, b) => { return a.maxGenerations < b.maxGenerations ? a : b })
+            const newOne = villageList.reduce((a, b) => { return a.maxGenerations < b.maxGenerations ? a : b })
             setNewVillage(newOne)
         }, [villageList]
     )
@@ -35,10 +35,10 @@ export const Home = () => {
                     <div className="left--home">
                         <h1>Welcome {user.userName}!</h1>
                         <div>
-                            {`Longest Living Village: "${old.villageName}" lasted ${old.maxGenerations} generations`}
+                            {`Longest Living Village: "${old.villageName}" lasted ${old.maxGenerations} generations in a ${old.seed.length} block Village Square`}
                         </div>
                         <div>
-                            {`Shortest Living Village: "${newVillage.villageName}" lasted ${newVillage.maxGenerations} generations`}
+                            {`Shortest Living Village: "${newVillage.villageName}" lasted ${newVillage.maxGenerations} generations in a ${newVillage.seed.length} block Village Square`}
                         </div>
                     </div>
                     <div className="right--home">
