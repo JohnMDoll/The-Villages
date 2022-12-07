@@ -46,6 +46,7 @@ export const Home = () => {
                     <div className="right--home">
                         <div className="village--list">
                             <h3>Your Villages</h3>
+                            <i>Click any village to replay and/or modify</i>
                             <ul>
                                 {villageList.map((v, i) => {
                                     return <li key={v.id}

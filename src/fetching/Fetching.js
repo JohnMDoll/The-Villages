@@ -1,10 +1,4 @@
-import { useNavigate } from "react-router-dom"
-
-//generic user fetching function? maybe useful, maybe not, but we'll try it in some places
-const NavigateFunction = (words) => {
-    let navigate = useNavigate(words)
-    return navigate
-}
+// module contains all API functions
 
 export const getUsers = (query) => {
     if (!query) { let query = "" }
@@ -98,8 +92,18 @@ export const VillageSaver = (villageObj, seedObj) => {
         })
     })
         .then(res => res.json())
-        // .then(res => console.log(res))
         .then(res => [villageObj.id, villageObj.seed] = [res.id, res.seed])
+}
+
+export const VillageUpdater = (villageObj) => {
+    return fetch(`http://localhost:8088/villages/${villageObj.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(villageObj)
+    })
+        .then(res => res.json())
 }
 
 export const GetUserVillages = (user, setterFunction) => {

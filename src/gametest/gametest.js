@@ -10,7 +10,7 @@ export const Game = () => {
     const [startOrStop, setStartOrStop] = useState(false) //we'll use this to track whether the game has been started yet, or stopped after starting
     const [allCellReferences, setAllCellReferences] = useState([])
     const [gridLength, setGridLength] = useState(10) //how big the playing grid will be (it's a square, so just need 1 dimension)
-
+    const existingVillage = JSON.parse(localStorage.getItem("this_village"))
     const [village, setVillage] = useState({
         name: "",
         gridLength: gridLength,
@@ -45,8 +45,10 @@ export const Game = () => {
                 if (village.hasOwnProperty("maxGenerations")) {
                     ///////// I think put a save confirm window here after making a fetch function for saving////////
                     if (window.confirm("It got boring.\nWould you like to create a new village?")) {
+                        // console.log("sah dude")
+                        // alert("hmmm?")
                         window.location.reload()
-                    } else { navigate("/") }
+                    } else { navigate("/home") }
                 }
             }
         },

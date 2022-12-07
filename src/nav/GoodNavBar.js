@@ -13,7 +13,7 @@ export const NavBar = () => {
             <div key="nav2" className="navdiv" onClick={() => { navigate("game", { replace: false }) }}>
                 Game
             </div>
-            <div key="nav3" className="navdiv" onClick={() => { return [localStorage.removeItem("cap_user"), navigate("login", { replace: false })] }}>
+            <div key="nav3" className="navdiv" onClick={() => { return [localStorage.removeItem("cap_user"), localStorage.removeItem("this_village"), navigate("login", { replace: false })] }}>
                 Log Out
             </div>
         </section>
