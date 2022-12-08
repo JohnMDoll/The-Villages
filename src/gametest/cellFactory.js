@@ -27,6 +27,7 @@ export const CellFactory = ({ started, allCellReferences, cellReferenceSetterFun
 
     const GridMaker = () => { //creates the play area based on 
         if (existingVillage) {
+            SetGridLength(existingVillage.gridLength)
             setVillageCopy(existingVillage)
             return existingVillage.seed.map((cell, i) => {
                 return <div key={cell.address}

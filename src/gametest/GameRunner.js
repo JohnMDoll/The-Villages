@@ -9,6 +9,9 @@ export const GameRunning = ({ started, startedSetterFunction, allCellReferences,
     let [villageCopy, setVillageCopy] = useState(village)
     const existingVillage = JSON.parse(localStorage.getItem("this_village")) //find out if a village save is imported
     let [allCellReference, setAllCellReference] = useState(allCellReferences)
+    const [maxPopulation, setMaxPopulation] = useState(0)
+    let currentPopulation = allCellReference.filter(a => a.status === true).length
+    
 
     const maxGenClearer = () => {
         delete village.maxGenerations
@@ -128,12 +131,16 @@ export const GameRunning = ({ started, startedSetterFunction, allCellReferences,
             const interval = setInterval(() => {
                 checkTheNeighborhood(previousGen, previousPreviousGen)
                 setDisplay(renderer)
-            }, 2000)
+            }, 200)
             return () => clearInterval(interval)
         } else {
             if (existingVillage) {
+                existingVillage.maxPopulation = maxPopulation
                 MaxGenPutter(existingVillage)
             } else {
+                let copy = villageCopy
+                copy.maxPopulation = maxPopulation
+                setVillageCopy(copy)
                 MaxGenPutter(villageCopy)
             }
             startedSetterFunction(false)
@@ -141,10 +148,13 @@ export const GameRunning = ({ started, startedSetterFunction, allCellReferences,
     },
         [previousGen, previousPreviousGen]
     )
-    //setting previous generations after each new generation to be compared for stagnation against the next gen
+    //data transfer handling after each generation
     useEffect(() => {
         setPPGen(structuredClone(previousGen))
         setPGen(structuredClone(allCellReference))
+        if (maxPopulation < currentPopulation) {
+            setMaxPopulation(currentPopulation)
+        }
     }, [genCount]
     )
 
@@ -155,12 +165,15 @@ export const GameRunning = ({ started, startedSetterFunction, allCellReferences,
                     display
                 }
             </section>
-            <section>
-                <div>
+            <section className="game--stats">
+                <div className="game__stats">
                     Generation Number: {genCount}
                 </div>
-                <div>
-                    Current Population: {allCellReference.filter(a => a.status===true).length}
+                <div className="game__stats">
+                    Current Population: {currentPopulation}
+                </div>
+                <div className="game__stats">
+                    Maximum Population: {maxPopulation}
                 </div>
             </section>
         </section>

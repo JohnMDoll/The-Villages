@@ -10,10 +10,13 @@ export const NavBar = () => {
             <div key="nav1" className="navdiv" id="user" onClick={() => { navigate("home") }}>
                 {user.userName}'s Domain
             </div>
-            <div key="nav2" className="navdiv" onClick={() => { navigate("game") }}>
+            <div key="nav2" className="navdiv" onClick={() => { navigate("/") }}>
+                The Kingdom
+            </div>
+            <div key="nav3" className="navdiv" onClick={() => { navigate("game") }}>
                 Game
             </div>
-            <div key="nav3" className="navdiv" onClick={() => { return [localStorage.removeItem("cap_user"), localStorage.removeItem("this_village"), navigate("login")] }}>
+            <div key="nav4" className="navdiv" onClick={() => { return [localStorage.removeItem("cap_user"), localStorage.removeItem("this_village"), navigate("login")] }}>
                 Log Out
             </div>
         </section>

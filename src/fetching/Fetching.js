@@ -73,7 +73,8 @@ export const MaxGenPutter = (villageObj) => {
             maxGenerations: villageObj.maxGenerations,
             villageName: villageObj.villageName,
             gridLength: villageObj.gridLength,
-            seed: villageObj.seed
+            seed: villageObj.seed,
+            maxPopulation: villageObj.maxPopulation
         })
     })
 }
@@ -132,4 +133,9 @@ export const RazeTheVillage = (id) => {
     return fetch(`http://localhost:8088/villages/${id}`, {
         method: "DELETE"
     })
+}
+
+export const HighScoresDataGetter = () => {
+    return fetch(`http://localhost:8088/villages`)
+        //gotta sort out each village size and then reduce those down to 3-5 best of each then return that
 }
