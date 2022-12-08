@@ -43,10 +43,8 @@ export const Game = () => {
                 )
             } else if (startOrStop === false) {
                 if (village.hasOwnProperty("maxGenerations")) {
-                    ///////// I think put a save confirm window here after making a fetch function for saving////////
+                    localStorage.removeItem("this_village")
                     if (window.confirm("It got boring.\nWould you like to create a new village?")) {
-                        // console.log("sah dude")
-                        // alert("hmmm?")
                         window.location.reload()
                     } else { navigate("/home") }
                 }
@@ -65,6 +63,7 @@ export const Game = () => {
 
     return <>
         <article>
+            <h1>{village.villageName}</h1>
             {
                 gameSource
             }

@@ -40,7 +40,6 @@ export const CellFactory = ({ started, allCellReferences, village, villageSetter
                             cell.status = (true)
                             existingVillage.seed[i].status = (true)
                             localStorage.setItem("this_village", JSON.stringify(existingVillage))
-                            // console.log(`Initialized cells: ${allCellReferences.filter(cell => cell.status === "initialCell")}`)
                         } //do we even need to change the div to checked or unchecked now? That was initially intended to give an addressable attribute
                         return [
                             evt.target.checked = !evt.target.checked,
@@ -112,7 +111,7 @@ export const CellFactory = ({ started, allCellReferences, village, villageSetter
                 let copy = { ...villageCopy }
                 villageSetterFunction(copy)
             }
-            setGrid(GridMaker())
+            setGrid(GridMaker)
         }, [GridLength]
     )
 
@@ -125,10 +124,14 @@ export const CellFactory = ({ started, allCellReferences, village, villageSetter
                         onChange={(evt) => {
                             let copy = { ...village }
                             copy.villageName = evt.target.value
+                            if (existingVillage) {
+                                existingVillage.villageName = copy.villageName
+                                localStorage.setItem("this_village", JSON.stringify(existingVillage))
+                            }
                             return [villageSetterFunction(copy), setVillageCopy(copy)]
                         }}
                         placeholder="Village Name" />
-                    {existingVillage? <button onClick={() => VillageUpdater(villageCopy)}>Update Name</button> : <></>}
+                    {existingVillage ? <button onClick={() => VillageUpdater(villageCopy)}>Update Name</button> : <></>}
                 </label>
                 <label>Square Size:
                     <select onChange={(evt) => {

@@ -21,7 +21,7 @@ export const GameRunning = ({ started, startedSetterFunction, allCellReferences,
     useEffect(
         () => {
             if (existingVillage) {
-               maxGenClearer()
+                maxGenClearer()
             }
         }, []
     )
@@ -29,9 +29,6 @@ export const GameRunning = ({ started, startedSetterFunction, allCellReferences,
     let gridLength = Math.sqrt(allCellReference.length)
 
     const renderer = () => {
-        console.log(`current gen 4-3: ${allCellReference[32]?.status}`)
-        console.log(`prev gen 4-3: ${previousGen[32]?.status}`)
-        console.log(`prepre gen 4-3: ${previousGen[32]?.status}`)
         return <>
             {
                 allCellReference.map(cell => {
@@ -40,7 +37,7 @@ export const GameRunning = ({ started, startedSetterFunction, allCellReferences,
                             console.log(`${cell.address} clicked on`)
                         }}
                         className={cell.status === true ? "active" : cell.status === false ? "dead" : "initialCell"} id={cell.address} value="">
-                        {cell.address}
+                        {/* {cell.address} */}
                     </div>
                 })
             }
@@ -56,6 +53,7 @@ export const GameRunning = ({ started, startedSetterFunction, allCellReferences,
     })
 
     const checkTheNeighborhood = (previousGen, previousPreviousGen) => {
+        setGenCount(++genCount)
         let cellsCopy = [...allCellReference] //maintain cell state during neighbor calculations and update all at once after calcs finish
 
         //initialize neighbors count
@@ -97,7 +95,7 @@ export const GameRunning = ({ started, startedSetterFunction, allCellReferences,
                 }
             })
         })
-       
+
         allCellReference = cellsCopy.map((c => { return c })) //updating with current neighbor count for next gen calculation
         allCellReference.map(currentGenCell => {
             if (currentGenCell.status === true && currentGenCell.neighbors === 2 || currentGenCell.neighbors === 3) {
@@ -110,13 +108,15 @@ export const GameRunning = ({ started, startedSetterFunction, allCellReferences,
         })
         // setting up a check to see if a steady state has been reached, either all dead or just repetitive
         // if previous or previous-previous generation is same as current, save genCount as maxGeneration in village object
-        // console.log(previousPreviousGen)
-        // console.log(previousGen)
         if (previousPreviousGen.length > 1 && previousGen.length > 1 && JSON.stringify(allCellReference.map(a => a.status)) === JSON.stringify(previousGen.map(a => a.status)) || JSON.stringify(allCellReference.map(a => a.status)) === JSON.stringify(previousPreviousGen.map(a => a.status))) {
-            console.log("stale confirmed")
             let copy = { ...village }
-            if (!villageCopy.hasOwnProperty('maxGenerations')) {
-                copy.maxGenerations = parseInt(Math.min(genCount))
+            if (!villageCopy.hasOwnProperty('maxGenerations')) {//this "if" specifically here for running-after-staleness implementation to avoid maxGen inflation but without that it still prevents maxGen inflation if iterations were to continue after staleness for any reason
+                copy.maxGenerations = parseInt(Math.min(genCount)) - 1
+                if (existingVillage) { //update existingVillage variable for passing back to database as updated village
+                    existingVillage.maxGenerations = copy.maxGenerations
+                    existingVillage.villageName = copy.villageName
+                    localStorage.setItem("this_village", JSON.stringify(existingVillage))
+                }
                 setVillageCopy(copy)
                 villageSetterFunction(copy)
             }
@@ -126,15 +126,17 @@ export const GameRunning = ({ started, startedSetterFunction, allCellReferences,
     // useEffect written to stop endless recalculation at maximum processing speed
     useEffect(() => {
         if (!villageCopy.hasOwnProperty('maxGenerations')) {
-
             const interval = setInterval(() => {
                 checkTheNeighborhood(previousGen, previousPreviousGen)
                 setDisplay(renderer)
-                setGenCount(genCount++)
-            }, 1000)
+            }, 100)
             return () => clearInterval(interval)
         } else {
-            MaxGenPutter(villageCopy)
+            if (existingVillage) {
+                MaxGenPutter(existingVillage)
+            } else {
+                MaxGenPutter(villageCopy)
+            }
             startedSetterFunction(false)
         }
     },
