@@ -8,11 +8,6 @@ export const ApplicationViews = () => {
     return <Routes>
         <Route path="/" element={
             <>
-                {/* <section className="applicationView">
-                    <h1>Hi</h1>
-                    <h3>We're Just Messing Around in Here</h3>
-                    <h6>(this is in the ApplicationViews.js file, just fyi)</h6>
-                </section> */}
                 <Outlet />
             </>
         }>

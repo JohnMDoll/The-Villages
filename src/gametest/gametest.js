@@ -25,6 +25,7 @@ export const Game = () => {
             gridLength={gridLength}
             gridLengthSetterFunction={setGridLength}
             allCellReferences={allCellReferences}
+            cellReferenceSetterFunction={setAllCellReferences}
         /> //persisting active and dead cells across all game modules
     )
 

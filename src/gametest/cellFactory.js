@@ -3,7 +3,7 @@ import { VillageUpdater } from "../fetching/Fetching"
 import { GameRunning } from "./GameRunner"
 // this module is responsible for initial manual "village" setup
 
-export const CellFactory = ({ started, allCellReferences, village, villageSetterFunction, gridLength, gridLengthSetterFunction }) => {
+export const CellFactory = ({ started, allCellReferences, cellReferenceSetterFunction, village, villageSetterFunction, gridLength, gridLengthSetterFunction }) => {
     const [GridLength, SetGridLength] = useState(gridLength) //how big the playing grid will be (it's a square, so just need 1 dimension)
     const [villageCopy, setVillageCopy] = useState(village)
     const existingVillage = JSON.parse(localStorage.getItem("this_village"))
@@ -109,6 +109,7 @@ export const CellFactory = ({ started, allCellReferences, village, villageSetter
                 })
             } else { //only need to pass existing village data into village state if using saved village
                 let copy = { ...villageCopy }
+                cellReferenceSetterFunction(villageCopy.seed)
                 villageSetterFunction(copy)
             }
             setGrid(GridMaker)

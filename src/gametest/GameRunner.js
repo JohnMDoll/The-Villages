@@ -7,9 +7,8 @@ export const GameRunning = ({ started, startedSetterFunction, allCellReferences,
     let [previousPreviousGen, setPPGen] = useState([{ "status": "initial PPG" }])
     let [previousGen, setPGen] = useState([{ "status": "initial PG" }])
     let [villageCopy, setVillageCopy] = useState(village)
-    let [allCellReference, setAllCellReference] = useState(allCellReferences)
-    //do stuff to delete then set village/villageCopy again
     const existingVillage = JSON.parse(localStorage.getItem("this_village")) //find out if a village save is imported
+    let [allCellReference, setAllCellReference] = useState(allCellReferences)
 
     const maxGenClearer = () => {
         delete village.maxGenerations
@@ -124,12 +123,12 @@ export const GameRunning = ({ started, startedSetterFunction, allCellReferences,
     }
 
     // useEffect written to stop endless recalculation at maximum processing speed
-    useEffect(() => {
+    useEffect(() => {//controls generation cycling rate & sends village to database on stability reached then stops iterations
         if (!villageCopy.hasOwnProperty('maxGenerations')) {
             const interval = setInterval(() => {
                 checkTheNeighborhood(previousGen, previousPreviousGen)
                 setDisplay(renderer)
-            }, 100)
+            }, 2000)
             return () => clearInterval(interval)
         } else {
             if (existingVillage) {
@@ -156,7 +155,14 @@ export const GameRunning = ({ started, startedSetterFunction, allCellReferences,
                     display
                 }
             </section>
-            Generation Count: {genCount}
+            <section>
+                <div>
+                    Generation Number: {genCount}
+                </div>
+                <div>
+                    Current Population: {allCellReference.filter(a => a.status===true).length}
+                </div>
+            </section>
         </section>
     </>
 }

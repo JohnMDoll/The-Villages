@@ -18,7 +18,6 @@ export const CapTest = () => {
 					<ApplicationViews />
 				</>
 			</Authorized>
-
 		} />
 	</Routes>
 }
