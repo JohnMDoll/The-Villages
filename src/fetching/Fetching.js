@@ -113,29 +113,73 @@ export const GetUserVillages = (user, setterFunction) => {
         .then(res => setterFunction(res))
 }
 
-export const NameyChangey = () => {
-    fetch("http://localhost:8088/villages?", {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            // userId: villageObj.userId,
-            // villageName: villageObj.villageName,
-            // gridLength: villageObj.gridLength,
-            // seed: seedObj
-        })
-    })
-        .then(res => res.json())
-}
-
 export const RazeTheVillage = (id) => {
     return fetch(`http://localhost:8088/villages/${id}`, {
         method: "DELETE"
     })
 }
 
-export const HighScoresDataGetter = () => {
+export const HighScoresRanker = () => {
     return fetch(`http://localhost:8088/villages`)
-        //gotta sort out each village size and then reduce those down to 3-5 best of each then return that
+        .then(res => res.json())
+        .then(res => {
+            let [allSmall, allMedium, allLarge] = [res.filter((vills) => vills.gridLength === 10), res.filter((vills) => vills.gridLength === 20), res.filter((vills) => vills.gridLength === 30)]
+            let topVills = [allSmall.sort((a, b) => b.maxGenerations - a.maxGenerations).slice(0, 5), allMedium.sort((a, b) => b.maxGenerations - a.maxGenerations).slice(0, 5), allLarge.sort((a, b) => b.maxGenerations - a.maxGenerations).slice(0, 5)]
+
+            // HighScoresPoster(topVills)
+        })
+}
+
+const HighScoresReset = () => {
+    return fetch(`http://localhost:8088/highScores`)
+        .then(res => res.json())
+        .then(res => res.map(each => fetch(`http://localhost:8088/highScores/${each.id}`, { method: "DELETE" })))
+        .then(() => { return })
+}
+
+const HighScoresPoster = (topVillages) => {
+        let scoresList = topVillages.flat()
+        const currentHighs = () => {
+         return HighScoresGetter()}
+        let foundHighs = currentHighs()
+        console.log(foundHighs)
+        let currentScoreSum = foundHighs.map(high => high.village.maxGenerations)
+        currentScoreSum = currentScoreSum.reduce((a, b) => a+b)
+        console.log(currentScoreSum)
+        // if (scoresList.reduce((a, b) => a+b) !== foundHighs.maxGenerations.reduce((a, b) => a+b)){
+            // HighScoresReset(topVillages)
+        //     console.log("it ain't 12 yo")
+        // }
+
+        return scoresList.map(eachHighScoreObj => {
+            return fetch("http://localhost:8088/highScores", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    villageId: eachHighScoreObj.id
+                })
+            }
+            )
+        })
+}
+
+export const HighScoresGetter = () => {
+    return fetch(`http://localhost:8088/highScores?_expand=village`)
+        .then(res => res.json())
+        .then((res) => { return (res) })
+}
+
+// const GetNames = (highList) => {
+
+// }
+
+export const HighScoresUpdateNeededCheck = () => {
+    const dbScores = HighScoresGetter()
+    console.log(dbScores)
+    const currentScores = HighScoresRanker()
+    dbScores = dbScores.reduce((a, b) => { return a.village.maxGenerations + b.village.maxGenerations })
+    console.log(dbScores)
+
 }
