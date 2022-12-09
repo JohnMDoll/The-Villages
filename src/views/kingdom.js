@@ -29,10 +29,11 @@ export const TheKingdom = () => {
     }
 
     const displayGenerator = (arrays) => {
-        let stuff = arrays.map((oneSizeArray) => {
+        console.log("we're in displayGenerator!")
+        let stuff = arrays.map((oneSizeArray,i) => { 
             return (
-                <>
-                    <section className={`highscores--${oneSizeArray[0]?.village?.gridLength}`} key={`eachSize--${oneSizeArray.id}`}>
+                
+                    <section className={`highscores--${oneSizeArray[0]?.village?.gridLength}`} key={`eachSize--${i}`}>
                         <h2>Best {oneSizeArray[0]?.village?.gridLength * oneSizeArray[0]?.village?.gridLength} Block Villages</h2>
                         <ul key={`sizeList--${oneSizeArray.id}`}>
                             {
@@ -49,7 +50,7 @@ export const TheKingdom = () => {
                             }
                         </ul>
                     </section>
-                </>
+                
             )
         }
         )
