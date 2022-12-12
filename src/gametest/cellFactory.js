@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { VillageUpdater } from "../fetching/Fetching"
 import { GameRunning } from "./GameRunner"
 // this module is responsible for initial manual "village" setup
 
 export const CellFactory = ({ started, allCellReferences, cellReferenceSetterFunction, village, villageSetterFunction, gridLength, gridLengthSetterFunction }) => {
+    const navigate = useNavigate()
     const [GridLength, SetGridLength] = useState(gridLength) //how big the playing grid will be (it's a square, so just need 1 dimension)
     const [villageCopy, setVillageCopy] = useState(village)
     const existingVillage = JSON.parse(localStorage.getItem("this_village"))
@@ -18,10 +20,10 @@ export const CellFactory = ({ started, allCellReferences, cellReferenceSetterFun
     const cellClasser = (status) => { //assigns initial/active/dead classNames to each cell based on status for styling
         let cellClass = ""
         if (status === true) {
-            cellClass = "active"
+            cellClass = `active--${GridLength}`
         } else if (status === false) {
-            cellClass = "dead"
-        } else { cellClass = "initialCell" }
+            cellClass = `dead--${GridLength}`
+        } else { cellClass = `initialCell--${GridLength}` }
         return cellClass
     }
 
@@ -33,8 +35,8 @@ export const CellFactory = ({ started, allCellReferences, cellReferenceSetterFun
                 return <div key={cell.address}
                     onClick={(evt) => {
                         if (cell.status === true) {
-                            cell.status = ("initialCell")
-                            existingVillage.seed[i].status = "initialCell"
+                            cell.status = (`initialCell--${GridLength}`)
+                            existingVillage.seed[i].status = `initialCell--${GridLength}`
                             localStorage.setItem("this_village", JSON.stringify(existingVillage))
                             // console.log(`Initialized cells: ${allCellReferences.filter(cell => cell.status === "initialCell")}`)
                         } else if (cell.status !== false) {
@@ -58,19 +60,17 @@ export const CellFactory = ({ started, allCellReferences, cellReferenceSetterFun
                 return <div key={cell.address}
                     onClick={(evt) => {
                         if (cell.status === true) {
-                            cell.status = ("initialCell")
-                            // console.log(`Initialized cells: ${allCellReferences.filter(cell => cell.status === "initialCell")}`)
+                            cell.status = (`initialCell--${GridLength}`)
+                            
                         } else if (cell.status !== false) {
                             cell.status = (true)
-                            // console.log(`Initialized cells: ${allCellReferences.filter(cell => cell.status === "initialCell")}`)
                         } //do we even need to change the div to checked or unchecked now? That was initially intended to give an addressable attribute
                         return [
                             evt.target.checked = !evt.target.checked,
-                            // console.log(evt), 
                             evt.target.className = cellClasser(cell.status)
                         ]
                     }}
-                    className="initialCell" id={cell.address} value="">
+                    className={`initialCell--${GridLength}`} id={cell.address} value="">
                     {/* {cell.address} */}
                 </div>
             })
@@ -133,7 +133,7 @@ export const CellFactory = ({ started, allCellReferences, cellReferenceSetterFun
                             return [villageSetterFunction(copy), setVillageCopy(copy)]
                         }}
                         placeholder="Village Name" />
-                    {existingVillage ? <button onClick={() => VillageUpdater(villageCopy)}>Update Name</button> : <></>}
+                    {existingVillage ? <button className="name--button" onClick={() => [VillageUpdater(villageCopy), navigate("../home"), window.location.reload()]}>Rename Only</button> : <></>}
                 </label>
                 <label>Square Size:
                     <select onChange={(evt) => {

@@ -6,6 +6,7 @@ import { GameRunning } from "./GameRunner"
 import "./gametest.css"
 
 export const Game = () => {
+    document.body.id = "game"
     const navigate = useNavigate()
     const [startOrStop, setStartOrStop] = useState(false) //we'll use this to track whether the game has been started yet, or stopped after starting
     const [allCellReferences, setAllCellReferences] = useState([])
@@ -63,12 +64,14 @@ export const Game = () => {
     }
 
     return <>
-        <article>
-            <h1>{village.villageName}</h1>
+        <article className="village--supercontainer">
+            <section className="village--name">
+                <h1 className="village--name">{village.villageName}</h1>
+            </section>
             {
                 gameSource
             }
-            <button onClick={startbutton}>start or stop</button>
+            {!startOrStop? <button className="startbutton" onClick={startbutton}>Create Village</button> : <></>}
         </article>
     </>
 }

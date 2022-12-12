@@ -4,6 +4,7 @@ import { HighScoresGetter, HighScoresRanker, HighScoresUpdateNeededCheck } from 
 
 //module for any adminnish things
 export const Admin = () => {
+    document.body.id = "admin"
     const user = JSON.parse(localStorage.getItem("cap_user"))
     const navigate = useNavigate()    
 
@@ -34,6 +35,7 @@ export const Admin = () => {
     return (
     <>
     <h1>Admins only yo</h1>
+    <div>{window.location.pathname}</div>
     </>
     )
 }

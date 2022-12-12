@@ -38,7 +38,7 @@ export const GameRunning = ({ started, startedSetterFunction, allCellReferences,
                         onClick={(evt) => {
                             console.log(`${cell.address} clicked on`)
                         }}
-                        className={cell.status === true ? "active" : cell.status === false ? "dead" : "initialCell"} id={cell.address} value="">
+                        className={cell.status === true ? `active--${gridLength}` : cell.status === false ? `dead--${gridLength}` : `initialCell--${gridLength}`} id={cell.address} value="">
                         {/* {cell.address} */}
                     </div>
                 })
@@ -131,7 +131,7 @@ export const GameRunning = ({ started, startedSetterFunction, allCellReferences,
             const interval = setInterval(() => {
                 checkTheNeighborhood(previousGen, previousPreviousGen)
                 setDisplay(renderer)
-            }, 200)
+            }, 2000)
             return () => clearInterval(interval)
         } else {
             if (existingVillage) {
@@ -160,12 +160,7 @@ export const GameRunning = ({ started, startedSetterFunction, allCellReferences,
 
     return <>
         <section className="game--container">
-            <section className={`cells--grid--${gridLength}`}>
-                {
-                    display
-                }
-            </section>
-            <section className="game--stats">
+        <section className="game--stats">
                 <div className="game__stats">
                     Generation Number: {genCount}
                 </div>
@@ -175,6 +170,11 @@ export const GameRunning = ({ started, startedSetterFunction, allCellReferences,
                 <div className="game__stats">
                     Maximum Population: {maxPopulation}
                 </div>
+            </section>
+            <section className={`cells--grid--${gridLength}`}>
+                {
+                    display
+                }
             </section>
         </section>
     </>

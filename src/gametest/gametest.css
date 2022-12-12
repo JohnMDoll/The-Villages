@@ -1,65 +1,204 @@
-.initialCell {
+.initialCell--10 {
     display: flex;
     border: 0.5px solid black;
     justify-content: center;
     align-items: center;
-    height: 3rem;
-    width: 3rem;
+    height: 8.6vh;
+    width: 8.6vh;
     background-color: rgba(0, 0, 0, 0.259);
 
 }
-.active {
+
+.active--10 {
     display: flex;
     border: 0.5px solid black;
     justify-content: center;
     align-items: center;
-    height: 3rem;
-    width: 3rem;
+    height: 8.6vh;
+    width: 8.6vh;
     /* background-image: url("./somedancers.gif"); */
     background-image: url("./200w.webp");
     background-size: contain;
 
 }
-.dead {
+
+.dead--10 {
     display: flex;
     border: 0.5px solid black;
     justify-content: center;
     align-items: center;
-    height: 3rem;
-    width: 3rem;
+    height: 8.6vh;
+    width: 8.6vh;
     background-image: url("./dead.png");
     background-size: contain;
 
 }
 
 .cells--grid--10 {
+    padding-left: 10%;
     display: grid;
-    grid-template-columns: 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem;
+    grid-template-columns: 8.6vh 8.6vh 8.6vh 8.6vh 8.6vh 8.6vh 8.6vh 8.6vh 8.6vh 8.6vh;
+    justify-content: center;
+}
+
+.initialCell--20 {
+    display: flex;
+    border: 0.5px solid black;
+    justify-content: center;
+    align-items: center;
+    height: 4.2vh;
+    width: 4.2vh;
+    background-color: rgba(0, 0, 0, 0.259);
+
+}
+
+.active--20 {
+    display: flex;
+    border: 0.5px solid black;
+    justify-content: center;
+    align-items: center;
+    height: 4.2vh;
+    width: 4.2vh;
+    /* background-image: url("./somedancers.gif"); */
+    background-image: url("./200w.webp");
+    background-size: contain;
+
+}
+
+.dead--20 {
+    display: flex;
+    border: 0.5px solid black;
+    justify-content: center;
+    align-items: center;
+    height: 4.2vh;
+    width: 4.2vh;
+    background-image: url("./dead.png");
+    background-size: contain;
+
 }
 
 .cells--grid--20 {
+    padding-left: 10%;
     display: grid;
-    grid-template-columns: 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem;
+    grid-template-columns: 4.2vh 4.2vh 4.2vh 4.2vh 4.2vh 4.2vh 4.2vh 4.2vh 4.2vh 4.2vh 4.2vh 4.2vh 4.2vh 4.2vh 4.2vh 4.2vh 4.2vh 4.2vh 4.2vh 4.2vh;
+    justify-content: center;
+}
+
+.initialCell--30 {
+    display: flex;
+    border: 0.5px solid black;
+    justify-content: center;
+    align-items: center;
+    height: 2.75vh;
+    width: 2.75vh;
+    background-color: rgba(0, 0, 0, 0.259);
+
+}
+
+.active--30 {
+    display: flex;
+    border: 0.5px solid black;
+    justify-content: center;
+    align-items: center;
+    height: 2.75vh;
+    width: 2.75vh;
+    /* background-image: url("./somedancers.gif"); */
+    background-image: url("./200w.webp");
+    background-size: contain;
+
+}
+
+.dead--30 {
+    display: flex;
+    border: 0.5px solid black;
+    justify-content: center;
+    align-items: center;
+    height: 2.75vh;
+    width: 2.75vh;
+    background-image: url("./dead.png");
+    background-size: contain;
+
 }
 
 .cells--grid--30 {
+    padding-left: 10%;
     display: grid;
-    grid-template-columns: 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem;
+    grid-template-columns: 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh;
+    /* justify-content: center; */
+    
 }
 
 .village--form {
     display: flex;
     flex-direction: column;
+    align-content: center;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    font-size: x-large;
 }
-/* body{
+
+.name--button{
+    font-family: 'Old English Text MT';
+    padding: .25rem;
+    align-self: center;
+    justify-content: center;
+}
+
+body#game{
     background-image: url("./background.jpg");
-    background-size: 100%;
-} */
+    background-size: 120%;
+}
 
 select {
+    font-family: 'Old English Text MT';
     margin-inline: 5px;
+    font-size: x-large;
+    font-style: italic;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
 }
 
 input {
+    font-family: 'Old English Text MT';
     margin-inline: 5px;
+    font-size: large;
+    border-radius: 5px;
+}
+
+.village--name{
+    display: flex;
+    font-size: xx-large;
+    /* border: 2px solid blue; */
+    margin: 2px;
+    justify-content: center;
+}
+
+.village--supercontainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.game--container{
+    display: flex;
+    align-items:center
+}
+
+.startbutton{
+    font-family: 'Old English Text MT';
+    display: flex;
+    font-size: x-large;
+    font-weight: 700;
+    padding: .3rem;
+    align-self: center;
+    justify-content: center;
+}
+
+.game--stats {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    font-size: x-large;
 }

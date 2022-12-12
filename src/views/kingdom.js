@@ -3,6 +3,7 @@ import { HighScoresGetter, HighScoresRanker } from "../fetching/Fetching"
 
 
 export const TheKingdom = () => {
+    document.body.id = "kingdom"
     if (window.location.path !== "game") { localStorage.removeItem("this_village") }//clearing saved data if user navigates away from /game
 
     const [highScores, setHighScores] = useState([])

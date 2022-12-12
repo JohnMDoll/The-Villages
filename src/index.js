@@ -7,6 +7,8 @@ import { BrowserRouter } from 'react-router-dom';
 // import { ApplicationViews } from './views/ApplicationViews';
 
 const container = document.getElementById("root")
+document.body.id = window.location.pathname
+
 const root = createRoot(container)
 root.render(
   <BrowserRouter>
