@@ -1,0 +1,16 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: azure;
+    margin-left: -5%;
+}
+
+.navdiv{
+    display: flex;
+    align-self: flex-start;
+}
+
+.navdiv#user{
+    font-weight: bold;
+}

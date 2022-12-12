@@ -5,6 +5,7 @@
     align-items: center;
     height: 3rem;
     width: 3rem;
+    background-color: rgba(0, 0, 0, 0.259);
 
 }
 .active {
@@ -31,12 +32,34 @@
 
 }
 
-.cells--grid {
+.cells--grid--10 {
+    display: grid;
+    grid-template-columns: 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem;
+}
+
+.cells--grid--20 {
+    display: grid;
+    grid-template-columns: 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem;
+}
+
+.cells--grid--30 {
     display: grid;
     grid-template-columns: 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem 3rem;
 }
 
-body{
+.village--form {
+    display: flex;
+    flex-direction: column;
+}
+/* body{
     background-image: url("./background.jpg");
     background-size: 100%;
+} */
+
+select {
+    margin-inline: 5px;
+}
+
+input {
+    margin-inline: 5px;
 }

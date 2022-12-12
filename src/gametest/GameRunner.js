@@ -1,13 +1,39 @@
 import { useEffect, useState } from "react"
+import { MaxGenPutter } from "../fetching/Fetching"
 // this module is responsible for the running state of the game
 
-export const GameRunning = ({ started, allCellReferences }) => { //Intended to make an html cell with all the necessary unique attributes
-    let allCells = allCellReferences
+export const GameRunning = ({ started, startedSetterFunction, allCellReferences, village, villageSetterFunction }) => { //Intended to make an html cell with all the necessary unique attributes
+    let [genCount, setGenCount] = useState(1) //tracks village generations
+    let [previousPreviousGen, setPPGen] = useState([{ "status": "initial PPG" }])
+    let [previousGen, setPGen] = useState([{ "status": "initial PG" }])
+    let [villageCopy, setVillageCopy] = useState(village)
+    const existingVillage = JSON.parse(localStorage.getItem("this_village")) //find out if a village save is imported
+    let [allCellReference, setAllCellReference] = useState(allCellReferences)
+    const [maxPopulation, setMaxPopulation] = useState(0)
+    let currentPopulation = allCellReference.filter(a => a.status === true).length
     
+
+    const maxGenClearer = () => {
+        delete village.maxGenerations
+        villageSetterFunction(village)
+        setVillageCopy(village)
+        setAllCellReference(existingVillage.seed)
+    }
+
+    useEffect(
+        () => {
+            if (existingVillage) {
+                maxGenClearer()
+            }
+        }, []
+    )
+
+    let gridLength = Math.sqrt(allCellReference.length)
+
     const renderer = () => {
         return <>
             {
-                allCellReferences.map(cell => {
+                allCellReference.map(cell => {
                     return <div key={cell.address}
                         onClick={(evt) => {
                             console.log(`${cell.address} clicked on`)
@@ -22,47 +48,46 @@ export const GameRunning = ({ started, allCellReferences }) => { //Intended to m
 
     const [display, setDisplay] = useState(renderer)
 
-    allCellReferences.map((cell) => { //pull x/y coordinates for each cell for neighbor checking
+    allCellReference.map((cell) => { //pull x/y coordinates for each cell for neighbor checking
         let [xCoord, yCoord] = cell.address.split("--")
         cell.xCoord = parseInt(xCoord)
         cell.yCoord = parseInt(yCoord)
     })
 
-    const checkTheNeighborhood = () => {
-        let cellsCopy = [...allCellReferences] //maintain cell state during neighbor calculations and update all at once after calcs finish
+    const checkTheNeighborhood = (previousGen, previousPreviousGen) => {
+        setGenCount(++genCount)
+        let cellsCopy = [...allCellReference] //maintain cell state during neighbor calculations and update all at once after calcs finish
+
         //initialize neighbors count
         cellsCopy.map(cell => { cell.neighbors = 0 })
-
+        //next ~35 lines check whether each cell's neighbors are active and gives the active neighbor count to the cell's .neighbor property
         cellsCopy.map(cell => {
-            // console.log(cell.xCoord)
-            // console.log(cell.yCoord)
-            const neighborUL = allCellReferences.find(neighborCell => {
+            const neighborUL = allCellReference.find(neighborCell => {
                 return neighborCell.xCoord === (cell.xCoord - 1) && neighborCell.yCoord === (cell.yCoord - 1)
             })
-            const neighborML = allCellReferences.find(neighborCell => {
+            const neighborML = allCellReference.find(neighborCell => {
                 return neighborCell.xCoord === (cell.xCoord - 1) && neighborCell.yCoord === (cell.yCoord)
             })
-            const neighborBL = allCellReferences.find(neighborCell => {
+            const neighborBL = allCellReference.find(neighborCell => {
                 return neighborCell.xCoord === (cell.xCoord - 1) && neighborCell.yCoord === (cell.yCoord + 1)
             })
-            const neighborBM = allCellReferences.find(neighborCell => {
+            const neighborBM = allCellReference.find(neighborCell => {
                 return neighborCell.xCoord === (cell.xCoord) && neighborCell.yCoord === (cell.yCoord - 1)
             })
-            const neighborUM = allCellReferences.find(neighborCell => {
+            const neighborUM = allCellReference.find(neighborCell => {
                 return neighborCell.xCoord === (cell.xCoord) && neighborCell.yCoord === (cell.yCoord + 1)
             })
-            const neighborBR = allCellReferences.find(neighborCell => {
+            const neighborBR = allCellReference.find(neighborCell => {
                 return neighborCell.xCoord === (cell.xCoord + 1) && neighborCell.yCoord === (cell.yCoord - 1)
             })
-            const neighborMR = allCellReferences.find(neighborCell => {
+            const neighborMR = allCellReference.find(neighborCell => {
                 return neighborCell.xCoord === (cell.xCoord + 1) && neighborCell.yCoord === (cell.yCoord)
             })
-            const neighborUR = allCellReferences.find(neighborCell => {
+            const neighborUR = allCellReference.find(neighborCell => {
                 return neighborCell.xCoord === (cell.xCoord + 1) && neighborCell.yCoord === (cell.yCoord + 1)
             })
             //putting all of those found neighbors into this array and then adding count of alive ones to the current cell's neighbor count
             let neighborArray = [neighborBL, neighborBM, neighborBR, neighborML, neighborMR, neighborUL, neighborUM, neighborUR]
-            // console.log(neighborArray)
 
             neighborArray.map(each => {
                 if (each?.status === true) {
@@ -72,10 +97,9 @@ export const GameRunning = ({ started, allCellReferences }) => { //Intended to m
                 }
             })
         })
-        let previousGeneration = [...allCellReferences]
-        allCellReferences = cellsCopy
 
-        allCellReferences.map(currentGenCell => {
+        allCellReference = cellsCopy.map((c => { return c })) //updating with current neighbor count for next gen calculation
+        allCellReference.map(currentGenCell => {
             if (currentGenCell.status === true && currentGenCell.neighbors === 2 || currentGenCell.neighbors === 3) {
                 currentGenCell.status = true
             } else if (currentGenCell.status === true && currentGenCell.neighbors < 2 || currentGenCell.neighbors > 3) {
@@ -83,28 +107,75 @@ export const GameRunning = ({ started, allCellReferences }) => { //Intended to m
             } else if (currentGenCell.neighbors === 3) {
                 currentGenCell.status = true
             }
-            // console.log(currentGenCell.address)
-            // console.log(currentGenCell.status)
-            // console.log(currentGenCell.neighbors)
         })
+        // setting up a check to see if a steady state has been reached, either all dead or just repetitive
+        // if previous or previous-previous generation is same as current, save genCount as maxGeneration in village object
+        if (previousPreviousGen.length > 1 && previousGen.length > 1 && JSON.stringify(allCellReference.map(a => a.status)) === JSON.stringify(previousGen.map(a => a.status)) || JSON.stringify(allCellReference.map(a => a.status)) === JSON.stringify(previousPreviousGen.map(a => a.status))) {
+            let copy = { ...village }
+            if (!villageCopy.hasOwnProperty('maxGenerations')) {//this "if" specifically here for running-after-staleness implementation to avoid maxGen inflation but without that it still prevents maxGen inflation if iterations were to continue after staleness for any reason
+                copy.maxGenerations = parseInt(Math.min(genCount)) - 1
+                if (existingVillage) { //update existingVillage variable for passing back to database as updated village
+                    existingVillage.maxGenerations = copy.maxGenerations
+                    existingVillage.villageName = copy.villageName
+                    localStorage.setItem("this_village", JSON.stringify(existingVillage))
+                }
+                setVillageCopy(copy)
+                villageSetterFunction(copy)
+            }
+        }
     }
+
     // useEffect written to stop endless recalculation at maximum processing speed
-    useEffect(() => {
-        const interval = setInterval(() => {
-            checkTheNeighborhood()
-            setDisplay(renderer)
-        }, 500)
-        return () => clearInterval(interval)
+    useEffect(() => {//controls generation cycling rate & sends village to database on stability reached then stops iterations
+        if (!villageCopy.hasOwnProperty('maxGenerations')) {
+            const interval = setInterval(() => {
+                checkTheNeighborhood(previousGen, previousPreviousGen)
+                setDisplay(renderer)
+            }, 200)
+            return () => clearInterval(interval)
+        } else {
+            if (existingVillage) {
+                existingVillage.maxPopulation = maxPopulation
+                MaxGenPutter(existingVillage)
+            } else {
+                let copy = villageCopy
+                copy.maxPopulation = maxPopulation
+                setVillageCopy(copy)
+                MaxGenPutter(villageCopy)
+            }
+            startedSetterFunction(false)
+        }
     },
-        [allCellReferences]
+        [previousGen, previousPreviousGen]
+    )
+    //data transfer handling after each generation
+    useEffect(() => {
+        setPPGen(structuredClone(previousGen))
+        setPGen(structuredClone(allCellReference))
+        if (maxPopulation < currentPopulation) {
+            setMaxPopulation(currentPopulation)
+        }
+    }, [genCount]
     )
 
-
-    // let render = displayerer()
-
     return <>
-        {
-            display
-        }
+        <section className="game--container">
+            <section className={`cells--grid--${gridLength}`}>
+                {
+                    display
+                }
+            </section>
+            <section className="game--stats">
+                <div className="game__stats">
+                    Generation Number: {genCount}
+                </div>
+                <div className="game__stats">
+                    Current Population: {currentPopulation}
+                </div>
+                <div className="game__stats">
+                    Maximum Population: {maxPopulation}
+                </div>
+            </section>
+        </section>
     </>
 }

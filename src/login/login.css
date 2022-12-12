@@ -1,0 +1,20 @@
+.buttonHolder {
+    display: flex;
+    justify-content: space-between;
+}
+
+button#register{
+    background-color: aqua;
+}
+
+form{
+    display: flex;
+    justify-self: center;
+}
+
+fieldset{
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    width: 30%;
+}
