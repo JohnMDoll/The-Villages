@@ -124,8 +124,10 @@ export const HighScoresRanker = () => {
         .then(res => res.json())
         .then(res => {
             let [allSmall, allMedium, allLarge] = [res.filter((vills) => vills.gridLength === 10), res.filter((vills) => vills.gridLength === 20), res.filter((vills) => vills.gridLength === 30)]
+            console.log(allSmall, allMedium, allLarge)
             let topVills = [allSmall.sort((a, b) => b.maxGenerations - a.maxGenerations).slice(0, 5), allMedium.sort((a, b) => b.maxGenerations - a.maxGenerations).slice(0, 5), allLarge.sort((a, b) => b.maxGenerations - a.maxGenerations).slice(0, 5)]
-
+            console.log(topVills)
+            return topVills
             // HighScoresPoster(topVills)
         })
 }
@@ -175,11 +177,3 @@ export const HighScoresGetter = () => {
 
 // }
 
-export const HighScoresUpdateNeededCheck = () => {
-    const dbScores = HighScoresGetter()
-    console.log(dbScores)
-    const currentScores = HighScoresRanker()
-    dbScores = dbScores.reduce((a, b) => { return a.village.maxGenerations + b.village.maxGenerations })
-    console.log(dbScores)
-
-}

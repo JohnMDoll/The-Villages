@@ -80,7 +80,7 @@ export const TheKingdom = () => {
     )
 
     return <>
-        <div>this where "high scores" and such should be posted up</div>
+        <h1>WELCOME TO THE KINGDOM</h1>
         <section className="score--container">
             {
                 display

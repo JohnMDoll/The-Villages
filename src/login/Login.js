@@ -18,9 +18,8 @@ export const Login = () => {
 
     return (<>
         <section className="login">
-            <h4>There's supposed to be some login fields here</h4>
-            <h5>Sucks to be you huh?</h5>
-            <h6>Yeah it does.</h6>
+            <h4>Declare Yourself and Enter the Kingdom!</h4>
+            <h6>If you have not been previously declared, please click 'New User' to declare youself now.</h6>
             <form>
                 <fieldset>
                     <input autoFocus placeholder="username field" 
@@ -35,7 +34,6 @@ export const Login = () => {
                     </div>
                 </fieldset>
             </form>
-            <h6>Oh wow, somebody put them in</h6>
         </section>
     </>)
 }
