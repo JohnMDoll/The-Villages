@@ -13,7 +13,6 @@ export const TheKingdom = () => {
     const [display, setDisplay] = useState("")
 
     const scoreLister = () => {
-        // HighScoresRanker()
         let smalls = highScores.filter((scores) => scores.village.gridLength === 10)
         setSmall(smalls)
         let mediums = highScores.filter((scores) => scores.village.gridLength === 20)
@@ -22,14 +21,10 @@ export const TheKingdom = () => {
         setLarge(larges)
 
         let scoreObjArrays = [smalls, mediums, larges]
-        console.log("bout to setScoreListed")
-        console.log("this is what scorelisted should be outputting:")
-        console.log(scoreObjArrays)
         setScoreListed(scoreObjArrays)
     }
 
     const displayGenerator = (arrays) => {
-        console.log("we're in displayGenerator!")
         let stuff = arrays.map((oneSizeArray,i) => { 
             return (
                 
@@ -60,13 +55,8 @@ export const TheKingdom = () => {
     useEffect(
         () => {
             if (JSON.stringify(scoreListed) !== JSON.stringify([[],[],[]]) && JSON.stringify(scoreListed) !== JSON.stringify([]) && JSON.stringify(small) !== JSON.stringify([])) {
-                console.log("apparently scoreListed changed, let's see it:")
-                console.log(scoreListed)
                 displayGenerator(scoreListed)
-                console.log("just ran displayGenerator")
             } else {
-                console.log("didn't run displayGenerator, so let's look at scoreListed:")
-                console.log(scoreListed)
             }
         }, [scoreListed]
     )
@@ -76,8 +66,6 @@ export const TheKingdom = () => {
             const getHighScores = async () => {
                 const result = await HighScoresGetter()
                 setHighScores(result)
-                console.log("got high score things from API, look at em:")
-                console.log(result)
             }
             getHighScores()
         }, []
@@ -87,9 +75,7 @@ export const TheKingdom = () => {
         () => {
             if (highScores != []) {
                 scoreLister()
-                console.log("maybe got high scores, gonna run scoreLister now")
             }
-            else { console.log("don't have high scores, ain't running scoreLister yet") }
         }, [highScores]
     )
 
