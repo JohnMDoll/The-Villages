@@ -1,28 +1,67 @@
 
-body{
-    background-color: rgb(89, 89, 162);
+body#home{
+    background-image: url("homePainting.png");
+    background-attachment: unset;
+    background-size: cover;
+    background-color: antiquewhite;
+    background-position-y: 19px;
 }
 
 .home{
     display: flex;
-    
+    font-size: large;
 }
 
 .welcome{
     width: 100%;
     flex-direction: column;
-    font-size: xx-large;
+    font-size: xxx-large;
     font-weight: bold;
 }
-
+.side--header{
+    font-size: 30px;
+    font-weight: 600;
+}
 .right--home{
-    background-color: rgba(71, 186, 148, 0.633);
     display: flex;
-    width: 50%;
+    width: 75%;
+    padding-left: 3%;
 }
 
-.village--list{
-    /* flex-wrap: wrap; */
+ul{
+    padding: 0;
+}
+
+li{
+    padding-left: 8px;
+    padding-top: 5px;
+    margin: 1px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(207, 241, 254, 0.8);
+    border-radius: 15px;
+    width: 25%;
+}
+li div{
+    display: flex;
+    flex-direction: column;
+}
+li div:first-child{
+    font-size: large;
+}
+li div:not(:first-child){
+    font-size: medium;
+    padding-left: 10%;
+}
+
+div button.raze{
+    display: flex;
+    justify-self: center;
+    width: fit-content;
+    align-self: center;
+    border-radius: 50px;
+    background-color: rgb(84, 3, 19);
+    color: rgb(198, 3, 3);
 }
 
 ul{
@@ -31,25 +70,47 @@ ul{
 }
 
 li{
-    margin: 30px;
+    margin: 7px;
 }
 
 .left--home{
-    background-color: aquamarine;
     display: flex;
     flex-direction: column;
-    flex-basis: content;
-    width: 50%;
+    width: 25%;
+    padding-left: 2%;
+}
+
+.stats--container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: 5%;
+    margin-right: 7%;
 }
 
 .home--stats{
+    background-color: rgba(207, 241, 254, 0.8);
+    font-size: x-large;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    padding-right: 5%;
+    padding-bottom: 5%;
+    margin-top: 11%;
+    margin-bottom: 5%;
+    width: 100%;
+    border-radius: 15px;
 }
+
+.stat:first-child{
+    padding-top: 8%;
+}
+
 .stat{
+    font-size: large;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    border: 1px dotted black;
+    margin-top: 5px;
+    width: 100%;
 }

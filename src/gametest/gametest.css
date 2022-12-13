@@ -3,8 +3,8 @@
     border: 0.5px solid black;
     justify-content: center;
     align-items: center;
-    height: 8.6vh;
-    width: 8.6vh;
+    height: 8vh;
+    width: 8vh;
     background-color: rgba(0, 0, 0, 0.259);
 
 }
@@ -14,8 +14,8 @@
     border: 0.5px solid black;
     justify-content: center;
     align-items: center;
-    height: 8.6vh;
-    width: 8.6vh;
+    height: 8vh;
+    width: 8vh;
     /* background-image: url("./somedancers.gif"); */
     background-image: url("./200w.webp");
     background-size: contain;
@@ -27,8 +27,8 @@
     border: 0.5px solid black;
     justify-content: center;
     align-items: center;
-    height: 8.6vh;
-    width: 8.6vh;
+    height: 8vh;
+    width: 8vh;
     background-image: url("./dead.png");
     background-size: contain;
 
@@ -37,7 +37,7 @@
 .cells--grid--10 {
     padding-left: 10%;
     display: grid;
-    grid-template-columns: 8.6vh 8.6vh 8.6vh 8.6vh 8.6vh 8.6vh 8.6vh 8.6vh 8.6vh 8.6vh;
+    grid-template-columns: 8vh 8vh 8vh 8vh 8vh 8vh 8vh 8vh 8vh 8vh;
     justify-content: center;
 }
 
@@ -46,8 +46,8 @@
     border: 0.5px solid black;
     justify-content: center;
     align-items: center;
-    height: 4.2vh;
-    width: 4.2vh;
+    height: 3.9vh;
+    width: 3.9vh;
     background-color: rgba(0, 0, 0, 0.259);
 
 }
@@ -57,8 +57,8 @@
     border: 0.5px solid black;
     justify-content: center;
     align-items: center;
-    height: 4.2vh;
-    width: 4.2vh;
+    height: 3.9vh;
+    width: 3.9vh;
     /* background-image: url("./somedancers.gif"); */
     background-image: url("./200w.webp");
     background-size: contain;
@@ -70,8 +70,8 @@
     border: 0.5px solid black;
     justify-content: center;
     align-items: center;
-    height: 4.2vh;
-    width: 4.2vh;
+    height: 3.9vh;
+    width: 3.9vh;
     background-image: url("./dead.png");
     background-size: contain;
 
@@ -80,7 +80,7 @@
 .cells--grid--20 {
     padding-left: 10%;
     display: grid;
-    grid-template-columns: 4.2vh 4.2vh 4.2vh 4.2vh 4.2vh 4.2vh 4.2vh 4.2vh 4.2vh 4.2vh 4.2vh 4.2vh 4.2vh 4.2vh 4.2vh 4.2vh 4.2vh 4.2vh 4.2vh 4.2vh;
+    grid-template-columns: 3.9vh 3.9vh 3.9vh 3.9vh 3.9vh 3.9vh 3.9vh 3.9vh 3.9vh 3.9vh 3.9vh 3.9vh 3.9vh 3.9vh 3.9vh 3.9vh 3.9vh 3.9vh 3.9vh 3.9vh;
     justify-content: center;
 }
 
@@ -89,8 +89,8 @@
     border: 0.5px solid black;
     justify-content: center;
     align-items: center;
-    height: 2.75vh;
-    width: 2.75vh;
+    height: 2.55vh;
+    width: 2.55vh;
     background-color: rgba(0, 0, 0, 0.259);
 
 }
@@ -100,8 +100,8 @@
     border: 0.5px solid black;
     justify-content: center;
     align-items: center;
-    height: 2.75vh;
-    width: 2.75vh;
+    height: 2.55vh;
+    width: 2.55vh;
     /* background-image: url("./somedancers.gif"); */
     background-image: url("./200w.webp");
     background-size: contain;
@@ -113,8 +113,8 @@
     border: 0.5px solid black;
     justify-content: center;
     align-items: center;
-    height: 2.75vh;
-    width: 2.75vh;
+    height: 2.55vh;
+    width: 2.55vh;
     background-image: url("./dead.png");
     background-size: contain;
 
@@ -123,7 +123,7 @@
 .cells--grid--30 {
     padding-left: 10%;
     display: grid;
-    grid-template-columns: 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh 2.75vh;
+    grid-template-columns: 2.55vh 2.55vh 2.55vh 2.55vh 2.55vh 2.55vh 2.55vh 2.55vh 2.55vh 2.55vh 2.55vh 2.55vh 2.55vh 2.55vh 2.55vh 2.55vh 2.55vh 2.55vh 2.55vh 2.55vh 2.55vh 2.55vh 2.55vh 2.55vh 2.55vh 2.55vh 2.55vh 2.55vh 2.55vh 2.55vh;
     /* justify-content: center; */
     
 }
@@ -164,12 +164,12 @@ input {
     margin-inline: 5px;
     font-size: large;
     border-radius: 5px;
+    text-align: center;
 }
 
 .village--name{
     display: flex;
     font-size: xx-large;
-    /* border: 2px solid blue; */
     margin: 2px;
     justify-content: center;
 }
@@ -189,7 +189,7 @@ input {
     display: flex;
     font-size: x-large;
     font-weight: 700;
-    padding: .3rem;
+    padding: 2px;
     align-self: center;
     justify-content: center;
 }

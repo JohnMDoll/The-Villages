@@ -71,7 +71,7 @@ export const Game = () => {
             {
                 gameSource
             }
-            {!startOrStop? <button className="startbutton" onClick={startbutton}>Create Village</button> : <></>}
+            {!startOrStop? <button className="startbutton" onClick={startbutton}>Manifest Village</button> : <></>}
         </article>
     </>
 }

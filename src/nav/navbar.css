@@ -2,13 +2,17 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    background-color: azure;
-    margin-left: -5%;
+    background-color: rgb(82, 82, 82);
+    margin-left: -5.5%;
 }
 
 .navdiv{
     display: flex;
     align-self: flex-start;
+    background-color: rgb(116, 116, 119);
+    margin: 1px;
+    padding: 3px;
+    border-radius: 150px;
 }
 
 .navdiv#user{
