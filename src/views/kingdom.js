@@ -12,8 +12,8 @@ export const TheKingdom = () => {
     const [large, setLarge] = useState([])
     const [scoreListed, setScoreListed] = useState([])
     const [display, setDisplay] = useState("")
-    const [users, setUsers] = useState(GetUsers())
-    
+    const [users, setUsers] = useState("")
+
     const scoreLister = () => {
         let smalls = highScores.filter((scores) => scores.village.gridLength === 10)
         setSmall(smalls)
@@ -38,7 +38,7 @@ export const TheKingdom = () => {
                                     <li className="kingdom--item" key={`villageItem--${i}`}>
                                         <div key={`villageName--${i}`}><b>{arr.village?.villageName}</b></div>
                                         <div key={`generations--${i}`}>{arr.village?.maxGenerations} generations</div>
-                                        <div key={`userName--${i}`}>by somebody with userId {arr.village?.userId}</div>
+                                        <div key={`userName--${i}`}>lorded over by {(users.find(user => user.id === arr.village?.userId).userName)}</div>
                                     </li>
                                 )
                             })
@@ -63,7 +63,9 @@ export const TheKingdom = () => {
         () => {
             const getHighScores = async () => {
                 const result = await HighScoresGetter()
+                const userList = await GetUsers()
                 setHighScores(result)
+                setUsers(userList)
             }
             getHighScores()
         }, []

@@ -1,7 +1,7 @@
 // module contains all API functions
 
 export const GetUsers = () => {
-    return fetch(`https://localhost:8088/users`)
+    return fetch(`http://localhost:8088/users`)
         .then(res => res.json())
 }
 
@@ -55,7 +55,6 @@ export const RegisterNewUser = (userName) => {
                 localStorage.setItem("cap_user", JSON.stringify({
                     id: createdUser.id,
                     userName: createdUser.userName,
-                    // staff: createdUser?.isAdmin
                 }))
 
             }
