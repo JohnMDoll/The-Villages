@@ -5,6 +5,7 @@ body#home{
     background-size: cover;
     background-color: antiquewhite;
     background-position-y: 19px;
+    overflow: hidden;
 }
 
 .home{
@@ -21,6 +22,7 @@ body#home{
 .side--header{
     font-size: 30px;
     font-weight: 600;
+    text-decoration: underline;
 }
 .right--home{
     display: flex;
@@ -30,6 +32,7 @@ body#home{
 
 .home--list{
     padding: 0;
+    margin-top: 0px;
 }
 
 li{
@@ -41,7 +44,7 @@ li{
     background-color: rgba(207, 241, 254, 0.8);
     border-radius: 15px;
     width: 25%;
-    border: 1px solid rgba(1, 1, 71, 0.515);
+    border: 1px solid rgba(1, 1, 71, 0.315);
 }
 
 li div{
@@ -56,6 +59,8 @@ li div:first-child{
 li div:not(:first-child){
     font-size: medium;
     padding-left: 10%;
+    font-family: "papyrus";
+    font-weight: 600;
 }
 
 div button.raze{
@@ -73,10 +78,13 @@ div button.raze{
 .home--list{
     display: flex;
     flex-wrap: wrap;
+    overflow-y: auto;
+    max-height: 77vh;
 }
 
 li{
     margin: 7px;
+    margin-top: 3px;
 }
 
 .left--home{
@@ -103,11 +111,11 @@ li{
     padding-left: 7px;
     padding-right: 5%;
     padding-bottom: 5%;
-    margin-top: 8%;
+    margin-top: 1%;
     margin-bottom: 5%;
     width: 100%;
     border-radius: 15px;
-    border: 1px solid rgba(1, 1, 71, 0.515);
+    border: 1px solid rgba(1, 1, 71, 0.315);
 }
 
 .stat:first-child{
@@ -121,4 +129,6 @@ li{
     align-items: flex-end;
     margin-top: 5px;
     width: 100%;
+    font-family: "papyrus";
+    font-weight: 600;
 }

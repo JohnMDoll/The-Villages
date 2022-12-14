@@ -14,7 +14,7 @@ export const NavBar = () => {
                 The Kingdom
             </div>
             <div key="nav3" className="navdiv" onClick={() => { navigate("game") }}>
-                Game
+                New Village
             </div>
             <div key="nav4" className="navdiv" onClick={() => { return [localStorage.removeItem("cap_user"), localStorage.removeItem("this_village"), navigate("login")] }}>
                 Log Out

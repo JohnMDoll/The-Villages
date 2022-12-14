@@ -5,6 +5,7 @@ import "./login.css"
 
 
 export const Login = () => {
+    document.body.id = "login"
     const [userName, setUserName] = useState("")
     // const [password, setPassword] = useState("")
     const navigate = useNavigate()
@@ -18,19 +19,19 @@ export const Login = () => {
 
     return (<>
         <section className="login">
-            <h4>Declare Yourself and Enter the Kingdom!</h4>
-            <h6>If you have not been previously declared, please click 'New User' to declare youself now.</h6>
+            <div className="declare">Declare Yourself and Enter the Kingdom!</div>
+            <div className="login--register">If you have not been previously declared, click 'Register' to identify yourself, <u>immediately</u></div>
             <form>
                 <fieldset>
-                    <input autoFocus placeholder="username field" 
+                    <input className="login--input" required autoFocus placeholder="username" 
                     type="text" value={userName} 
                     onChange={evt => setUserName(evt.target.value)} />
                     {/* <input required placeholder="password" 
                     type="password" value={password}  */}
                     {/* onChange={evt => setPassword(evt.target.value)}/> */}
                     <div className="buttonHolder">
-                    <button type="submit" id="login" onClick={handleLogin}>Log in</button>
-                    <button type="button" id="register" onClick={()=>{navigate("/register")}}>New User</button>
+                    <button type="submit" id="login" onClick={userName.length? handleLogin: ""}>Declare!</button>
+                    <button type="button" id="register" onClick={()=>{navigate("/register")}}>Register</button>
                     </div>
                 </fieldset>
             </form>

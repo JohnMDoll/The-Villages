@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { HighScoresGetter, HighScoresRanker } from "../fetching/Fetching"
+import { HighScoresGetter, HighScoresRanker, GetUsers } from "../fetching/Fetching"
 import "./kingdom.css"
 
 export const TheKingdom = () => {
@@ -12,7 +12,8 @@ export const TheKingdom = () => {
     const [large, setLarge] = useState([])
     const [scoreListed, setScoreListed] = useState([])
     const [display, setDisplay] = useState("")
-
+    const [users, setUsers] = useState(GetUsers())
+    
     const scoreLister = () => {
         let smalls = highScores.filter((scores) => scores.village.gridLength === 10)
         setSmall(smalls)
@@ -29,7 +30,7 @@ export const TheKingdom = () => {
         let stuff = arrays.map((oneSizeArray, i) => {
             return (
                 <section className={`highscores--${oneSizeArray[0]?.village?.gridLength}`} key={`eachSize--${i}`}>
-                    <h2>Best {oneSizeArray[0]?.village?.gridLength * oneSizeArray[0]?.village?.gridLength} Block Villages</h2>
+                    <div className="kingdom--header">Best {oneSizeArray[0]?.village?.gridLength * oneSizeArray[0]?.village?.gridLength} Block Villages</div>
                     <ul className="kingdom--list" key={`sizeList--${oneSizeArray.id}`}>
                         {
                             oneSizeArray.map((arr, i) => {
@@ -77,7 +78,7 @@ export const TheKingdom = () => {
     )
 
     return <>
-        <h1>WELCOME TO THE KINGDOM</h1>
+        <div className="welcome">WELCOME TO THE KINGDOM</div>
         <section className="score--container">
             {
                 display

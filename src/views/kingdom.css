@@ -1,7 +1,29 @@
+
 body#kingdom{
-    background-color: darkgreen
+    background-image: url("./kingdomCentered.png");
+    background-size: cover;
+    background-color: darkgreen;
+    margin-left: 2%;
 }
 
 ul.kingdom--list{
-    display: flex
+    display: flex;
+    padding-left: 0%;
+
+}
+
+.kingdom--list li{
+font-family: "papyrus";
+}
+
+.kingdom--header{
+    font-size: xx-large;
+    font-weight: 600;
+    width: fit-content;
+    padding: 5px;
+    padding-inline: 8px;
+    background-color: rgba(207, 241, 254, 0.8);
+    border-radius: 25px;
+    border: 1px solid rgba(1, 1, 71, 0.315);
+    text-decoration: underline;
 }

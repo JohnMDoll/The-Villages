@@ -1,10 +1,10 @@
 // module contains all API functions
 
-export const getUsers = (query) => {
-    if (!query) { let query = "" }
-    return fetch(`https://localhost:8088/users?_${query}`)
-        .then(console.log)
+export const GetUsers = () => {
+    return fetch(`https://localhost:8088/users`)
+        .then(res => res.json())
 }
+
 //site login process handler
 export const HandleLogin = (userName) => {
     return fetch(`http://localhost:8088/users?userName=${userName}`)
