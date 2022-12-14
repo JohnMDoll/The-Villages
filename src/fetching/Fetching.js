@@ -88,7 +88,7 @@ export const VillageSaver = (villageObj, seedObj) => {
         body: JSON.stringify({
             userId: villageObj.userId,
             villageName: villageObj.villageName,
-            gridLength: villageObj.gridLength,
+            gridLength: Math.sqrt(seedObj.length),
             seed: seedObj
         })
     })
@@ -124,11 +124,10 @@ export const HighScoresRanker = () => {
         .then(res => res.json())
         .then(res => {
             let [allSmall, allMedium, allLarge] = [res.filter((vills) => vills.gridLength === 10), res.filter((vills) => vills.gridLength === 20), res.filter((vills) => vills.gridLength === 30)]
-            console.log(allSmall, allMedium, allLarge)
-            let topVills = [allSmall.sort((a, b) => b.maxGenerations - a.maxGenerations).slice(0, 5), allMedium.sort((a, b) => b.maxGenerations - a.maxGenerations).slice(0, 5), allLarge.sort((a, b) => b.maxGenerations - a.maxGenerations).slice(0, 5)]
+            let [small, medium, large] = [allSmall.sort((a, b) => b.maxGenerations - a.maxGenerations).slice(0, 5), allMedium.sort((a, b) => b.maxGenerations - a.maxGenerations).slice(0, 5), allLarge.sort((a, b) => b.maxGenerations - a.maxGenerations).slice(0, 5)]
+            let topVills = [small, medium, large]
             console.log(topVills)
             return topVills
-            // HighScoresPoster(topVills)
         })
 }
 
@@ -140,37 +139,34 @@ const HighScoresReset = () => {
 }
 
 const HighScoresPoster = (topVillages) => {
-        let scoresList = topVillages.flat()
-        const currentHighs = () => {
-         return HighScoresGetter()}
-        let foundHighs = currentHighs()
-        console.log(foundHighs)
-        let currentScoreSum = foundHighs.map(high => high.village.maxGenerations)
-        currentScoreSum = currentScoreSum.reduce((a, b) => a+b)
-        console.log(currentScoreSum)
-        // if (scoresList.reduce((a, b) => a+b) !== foundHighs.maxGenerations.reduce((a, b) => a+b)){
-            // HighScoresReset(topVillages)
-        //     console.log("it ain't 12 yo")
-        // }
+    let scoresList = topVillages.flat()
+    const currentHighs = () => {
+        return HighScoresGetter()
+    }
+    let foundHighs = currentHighs()
+    console.log(foundHighs)
+    let currentScoreSum = foundHighs.map(high => high.village.maxGenerations)
+    currentScoreSum = currentScoreSum.reduce((a, b) => a + b)
+    console.log(currentScoreSum)
 
-        return scoresList.map(eachHighScoreObj => {
-            return fetch("http://localhost:8088/highScores", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    villageId: eachHighScoreObj.id
-                })
-            }
-            )
-        })
+    return scoresList.map(eachHighScoreObj => {
+        return fetch("http://localhost:8088/highScores", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                villageId: eachHighScoreObj.id
+            })
+        }
+        )
+    })
 }
 
 export const HighScoresGetter = () => {
     return fetch(`http://localhost:8088/highScores?_expand=village`)
         .then(res => res.json())
-        .then((res) => { return (res) })
+        .then((res) => { return res })
 }
 
 // const GetNames = (highList) => {

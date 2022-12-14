@@ -38,45 +38,45 @@ export const Home = () => {
             if (villageList[0]?.hasOwnProperty("userId")) {
                 setVillageStats(
                     <>
-                            <div className="home--stats" id="longest--village">
-                                {`Longest Living Village: `}
+                        <div className="home--stats" id="longest--village">
+                            {`Longest Living Village: `}
 
-                                <div className="stat">
-                                    {`The village of ${old.villageName}`}
-                                </div>
-                                <div className="stat">
-                                    {`${old.maxGenerations} generations`}
-                                </div>
-                                <div className="stat">
-                                    {`${old?.seed.length} block Village`}
-                                </div>
+                            <div className="stat">
+                                {`The village of ${old.villageName}`}
                             </div>
-                            <div className="home--stats" id="shortest--village">
-                                {`Shortest Living Village: `}
+                            <div className="stat">
+                                {`${old.maxGenerations} generations`}
+                            </div>
+                            <div className="stat">
+                                {`${old?.seed.length} block Village`}
+                            </div>
+                        </div>
+                        <div className="home--stats" id="shortest--village">
+                            {`Shortest Living Village: `}
 
-                                <div className="stat">
-                                    {`The village of ${newVillage.villageName}`}
-                                </div>
-                                <div className="stat">
-                                    {`${newVillage.maxGenerations} generations`}
-                                </div>
-                                <div className="stat">
-                                    {`${newVillage?.seed?.length} block Village`}
-                                </div>
+                            <div className="stat">
+                                {`The village of ${newVillage.villageName}`}
                             </div>
-                            <div className="home--stats">
-                                {`Most Bussin Village: `}
+                            <div className="stat">
+                                {`${newVillage.maxGenerations} generations`}
+                            </div>
+                            <div className="stat">
+                                {`${newVillage?.seed?.length} block Village`}
+                            </div>
+                        </div>
+                        <div className="home--stats">
+                            {`Most Bussin Village: `}
 
-                                <div className="stat">
-                                    {`The village of ${bussinVillage.villageName}`}
-                                </div>
-                                <div className="stat">
-                                    {`${bussinVillage.maxGenerations} generations`}
-                                </div>
-                                <div className="stat">
-                                    {`${bussinVillage?.seed?.length} block Village`}
-                                </div>
+                            <div className="stat">
+                                {`The village of ${bussinVillage.villageName}`}
                             </div>
+                            <div className="stat">
+                                {`${bussinVillage.maxGenerations} generations`}
+                            </div>
+                            <div className="stat">
+                                {`${bussinVillage?.seed?.length} block Village`}
+                            </div>
+                        </div>
                     </>
                 )
             }
@@ -104,7 +104,7 @@ export const Home = () => {
                                 <div className="village--list">
                                     <div className="side--header">Your Villages</div>
                                     <i>Click any village to replay and/or edit it</i>
-                                    <ul>
+                                    <ul className="home--list">
                                         {villageList.map((v, i) => {
                                             return <li key={v.id}
                                                 onClick={(evt) => {
@@ -126,10 +126,10 @@ export const Home = () => {
                                                 <button className="raze" onClick={(e) => {
                                                     e.stopPropagation()
                                                     if (window.confirm(`Are you certain you wish to raze this village?`)) {
-                                                    alert(`${user.userName}'s might has been unleashed.\n\n The people wept, and no trace of "${v.villageName}" remained.`)
-                                                    RazeTheVillage(v.id)
-                                                    GetUserVillages(user.id, setVillageList)
-                                                } 
+                                                        RazeTheVillage(v.id)
+                                                        GetUserVillages(user.id, setVillageList)
+                                                        alert(`${user.userName}'s might has been unleashed.\n\n The people wept, and no trace of "${v.villageName}" remained.`)
+                                                    }
                                                 }
                                                 }>
                                                     RAZE!

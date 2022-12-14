@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { HighScoresGetter, HighScoresRanker, HighScoresUpdateNeededCheck } from "../fetching/Fetching"
 
@@ -6,8 +6,11 @@ import { HighScoresGetter, HighScoresRanker, HighScoresUpdateNeededCheck } from 
 export const Admin = () => {
     document.body.id = "admin"
     const user = JSON.parse(localStorage.getItem("cap_user"))
-    const navigate = useNavigate()    
-
+    const navigate = useNavigate()
+    const [didAThing, setDidAThing] = useState(false)
+    const [postedScores, setPosted] = useState()
+    const [actualScores, setActual] = useState([])
+    let old = []
     useEffect( //is snarky and kicks non-admin users out if they have the audacity to navigate to /admin
         () => {
             const adminCheck = () => {
@@ -17,25 +20,33 @@ export const Admin = () => {
                 }
             }
             adminCheck()
-        },[]
+        }, []
     )
+
+    const oldScores = () => {
+        let dbScores = HighScoresGetter()
+        return dbScores
+    }
 
     useEffect(
         () => {
-            // HighScoresRanker()
-            const HighScoresUpdateNeededCheck = () => {
-                const dbScores = HighScoresGetter()
-                const currentScores = HighScoresRanker()
-                
+            async function getSome() {
+                const response = await HighScoresRanker()
+                const otherResponse = await HighScoresGetter()
+                setActual(response)
+                setPosted(otherResponse)
+                return response
             }
-            HighScoresUpdateNeededCheck()
-        },[]
+            let some = getSome()
+        }, []
     )
 
+
     return (
-    <>
-    <h1>Admins only yo</h1>
-    <div>{window.location.pathname}</div>
-    </>
+        <>
+            <h1>Admins only yo</h1>
+            <div>{window.location.pathname}</div>
+            <div></div>
+        </>
     )
 }

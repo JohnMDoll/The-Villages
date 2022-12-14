@@ -11,7 +11,6 @@ export const GameRunning = ({ started, startedSetterFunction, allCellReferences,
     let [allCellReference, setAllCellReference] = useState(allCellReferences)
     const [maxPopulation, setMaxPopulation] = useState(0)
     let currentPopulation = allCellReference.filter(a => a.status === true).length
-    
 
     const maxGenClearer = () => {
         delete village.maxGenerations
@@ -131,7 +130,7 @@ export const GameRunning = ({ started, startedSetterFunction, allCellReferences,
             const interval = setInterval(() => {
                 checkTheNeighborhood(previousGen, previousPreviousGen)
                 setDisplay(renderer)
-            }, 2000)
+            }, 1000)
             return () => clearInterval(interval)
         } else {
             if (existingVillage) {

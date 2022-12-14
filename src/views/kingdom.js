@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { HighScoresGetter, HighScoresRanker } from "../fetching/Fetching"
-
+import "./kingdom.css"
 
 export const TheKingdom = () => {
     document.body.id = "kingdom"
@@ -26,36 +26,32 @@ export const TheKingdom = () => {
     }
 
     const displayGenerator = (arrays) => {
-        let stuff = arrays.map((oneSizeArray,i) => { 
+        let stuff = arrays.map((oneSizeArray, i) => {
             return (
-                
-                    <section className={`highscores--${oneSizeArray[0]?.village?.gridLength}`} key={`eachSize--${i}`}>
-                        <h2>Best {oneSizeArray[0]?.village?.gridLength * oneSizeArray[0]?.village?.gridLength} Block Villages</h2>
-                        <ul key={`sizeList--${oneSizeArray.id}`}>
-                            {
-                                oneSizeArray.map((arr, i) => {
-                                    return (
-                                        <li key={`villageItem--${i}`}>
-                                            <div key={`villageName--${i}`}><b>{arr.village?.villageName}</b></div>
-                                            <div key={`generations--${i}`}>{arr.village?.maxGenerations} generations</div>
-                                            <div key={`userName--${i}`}>by somebody with userId {arr.village?.userId}</div>
-                                        </li>
-                                    )
-                                }
+                <section className={`highscores--${oneSizeArray[0]?.village?.gridLength}`} key={`eachSize--${i}`}>
+                    <h2>Best {oneSizeArray[0]?.village?.gridLength * oneSizeArray[0]?.village?.gridLength} Block Villages</h2>
+                    <ul className="kingdom--list" key={`sizeList--${oneSizeArray.id}`}>
+                        {
+                            oneSizeArray.map((arr, i) => {
+                                return (
+                                    <li className="kingdom--item" key={`villageItem--${i}`}>
+                                        <div key={`villageName--${i}`}><b>{arr.village?.villageName}</b></div>
+                                        <div key={`generations--${i}`}>{arr.village?.maxGenerations} generations</div>
+                                        <div key={`userName--${i}`}>by somebody with userId {arr.village?.userId}</div>
+                                    </li>
                                 )
-                            }
-                        </ul>
-                    </section>
-                
+                            })
+                        }
+                    </ul>
+                </section>
             )
-        }
-        )
+        })
         return setDisplay(stuff)
     }
 
     useEffect(
         () => {
-            if (JSON.stringify(scoreListed) !== JSON.stringify([[],[],[]]) && JSON.stringify(scoreListed) !== JSON.stringify([]) && JSON.stringify(small) !== JSON.stringify([])) {
+            if (JSON.stringify(scoreListed) !== JSON.stringify([[], [], []]) && JSON.stringify(scoreListed) !== JSON.stringify([]) && JSON.stringify(small) !== JSON.stringify([])) {
                 displayGenerator(scoreListed)
             } else {
             }
@@ -71,7 +67,7 @@ export const TheKingdom = () => {
             getHighScores()
         }, []
     )
-    
+
     useEffect(
         () => {
             if (highScores != []) {

@@ -13,6 +13,8 @@
     margin: 1px;
     padding: 3px;
     border-radius: 150px;
+    border-right: 2px solid black;
+    border-bottom: .5px solid black;
 }
 
 .navdiv#user{

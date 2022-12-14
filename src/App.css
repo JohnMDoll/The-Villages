@@ -36,8 +36,4 @@
     transform: rotate(360deg);
   }
 }
-/* I did stuff under here, but not above */
-body{
-  background-color: rgb(112, 14, 14);
-  margin-left: 5%;
-}
+

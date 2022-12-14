@@ -28,7 +28,7 @@ body#home{
     padding-left: 3%;
 }
 
-ul{
+.home--list{
     padding: 0;
 }
 
@@ -41,14 +41,18 @@ li{
     background-color: rgba(207, 241, 254, 0.8);
     border-radius: 15px;
     width: 25%;
+    border: 1px solid rgba(1, 1, 71, 0.515);
 }
+
 li div{
     display: flex;
     flex-direction: column;
 }
+
 li div:first-child{
     font-size: large;
 }
+
 li div:not(:first-child){
     font-size: medium;
     padding-left: 10%;
@@ -62,9 +66,11 @@ div button.raze{
     border-radius: 50px;
     background-color: rgb(84, 3, 19);
     color: rgb(198, 3, 3);
+    margin-top: 2px;
+    margin-bottom: 2px;
 }
 
-ul{
+.home--list{
     display: flex;
     flex-wrap: wrap;
 }
@@ -94,12 +100,14 @@ li{
     font-size: x-large;
     display: flex;
     flex-direction: column;
+    padding-left: 7px;
     padding-right: 5%;
     padding-bottom: 5%;
-    margin-top: 11%;
+    margin-top: 8%;
     margin-bottom: 5%;
     width: 100%;
     border-radius: 15px;
+    border: 1px solid rgba(1, 1, 71, 0.515);
 }
 
 .stat:first-child{
