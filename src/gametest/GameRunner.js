@@ -10,16 +10,17 @@ export const GameRunning = ({ started, startedSetterFunction, allCellReferences,
     const existingVillage = JSON.parse(localStorage.getItem("this_village")) //find out if a village save is imported
     let [allCellReference, setAllCellReference] = useState(allCellReferences)
     const [maxPopulation, setMaxPopulation] = useState(0)
+    const [iterTime, setIterTime] = useState(1000)
     let currentPopulation = allCellReference.filter(a => a.status === true).length
 
-    const maxGenClearer = () => {
+    const maxGenClearer = () => {//deletes max generation property from imported village copy
         delete village.maxGenerations
         villageSetterFunction(village)
         setVillageCopy(village)
         setAllCellReference(existingVillage.seed)
     }
 
-    useEffect(
+    useEffect( //calls delete maxGen on load for imported village copies
         () => {
             if (existingVillage) {
                 maxGenClearer()
@@ -29,7 +30,7 @@ export const GameRunning = ({ started, startedSetterFunction, allCellReferences,
 
     let gridLength = Math.sqrt(allCellReference.length)
 
-    const renderer = () => {
+    const renderer = () => {//generates iteration render content
         return <>
             {
                 allCellReference.map(cell => {
@@ -53,7 +54,11 @@ export const GameRunning = ({ started, startedSetterFunction, allCellReferences,
         cell.yCoord = parseInt(yCoord)
     })
 
-    const checkTheNeighborhood = (previousGen, previousPreviousGen) => {
+    const speedSet = (speed) => {
+       setIterTime(speed)
+    }
+
+    const checkTheNeighborhood = (previousGen, previousPreviousGen) => { //calcs iterations, checks staleness
         setGenCount(++genCount)
         let cellsCopy = [...allCellReference] //maintain cell state during neighbor calculations and update all at once after calcs finish
 
@@ -130,7 +135,7 @@ export const GameRunning = ({ started, startedSetterFunction, allCellReferences,
             const interval = setInterval(() => {
                 checkTheNeighborhood(previousGen, previousPreviousGen)
                 setDisplay(renderer)
-            }, 1000)
+            }, iterTime)
             return () => clearInterval(interval)
         } else {
             if (existingVillage) {
@@ -156,10 +161,10 @@ export const GameRunning = ({ started, startedSetterFunction, allCellReferences,
         }
     }, [genCount]
     )
-
+// defaultValue={iterTime}
     return <>
         <section className="game--container">
-        <section className="game--stats">
+            <section className="game--stats">
                 <div className="game__stats">
                     Generation Number: {genCount}
                 </div>
@@ -169,12 +174,16 @@ export const GameRunning = ({ started, startedSetterFunction, allCellReferences,
                 <div className="game__stats">
                     Maximum Population: {maxPopulation}
                 </div>
+                <div className="slidecontainer">
+                    Speed <input type="range" className="slider" defaultValue={iterTime} min={50} max={5000} onChange={(evt) => {return speedSet(parseInt(evt.target.value))}}/>
+                </div>
             </section>
             <section className={`cells--grid--${gridLength}`}>
                 {
                     display
                 }
             </section>
+
         </section>
     </>
 }
