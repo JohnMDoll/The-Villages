@@ -61,7 +61,7 @@ export const CellFactory = ({ started, allCellReferences, cellReferenceSetterFun
                     onClick={(evt) => {
                         if (cell.status === true) {
                             cell.status = (`initialCell--${GridLength}`)
-                            
+
                         } else if (cell.status !== false) {
                             cell.status = (true)
                         } //do we even need to change the div to checked or unchecked now? That was initially intended to give an addressable attribute
@@ -119,34 +119,53 @@ export const CellFactory = ({ started, allCellReferences, cellReferenceSetterFun
 
     return <>
         <section className="game--container">
-            <div className="village--form">
-                <label>Village Name:
-                    <input required type="text"
-                        defaultValue={existingVillage ? `${existingVillage.villageName}` : undefined} //set naming field to imported name if exists, otherwise placeholder displays
-                        onChange={(evt) => {
-                            let copy = { ...village }
-                            copy.villageName = evt.target.value
-                            if (existingVillage) {
-                                existingVillage.villageName = copy.villageName
-                                localStorage.setItem("this_village", JSON.stringify(existingVillage))
-                            }
-                            return [villageSetterFunction(copy), setVillageCopy(copy)]
+            <div className="words--container">
+                <div className="village--form">
+                    <label>Village Name:
+                        <input required type="text"
+                            defaultValue={existingVillage ? `${existingVillage.villageName}` : undefined} //set naming field to imported name if exists, otherwise placeholder displays
+                            onChange={(evt) => {
+                                let copy = { ...village }
+                                copy.villageName = evt.target.value
+                                if (existingVillage) {
+                                    existingVillage.villageName = copy.villageName
+                                    localStorage.setItem("this_village", JSON.stringify(existingVillage))
+                                }
+                                return [villageSetterFunction(copy), setVillageCopy(copy)]
+                            }}
+                            placeholder="Village Name" />
+                        {existingVillage ? <button className="name--button" onClick={() => [VillageUpdater(villageCopy), navigate("../home"), window.location.reload()]}>Rename Only</button> : <></>}
+                    </label>
+                    <label>Square Size:
+                        <select onChange={(evt) => {
+                            return [SetGridLength(parseInt(evt.target.value)),
+                            gridLengthSetterFunction(parseInt(evt.target.value))]
                         }}
-                        placeholder="Village Name" />
-                    {existingVillage ? <button className="name--button" onClick={() => [VillageUpdater(villageCopy), navigate("../home"), window.location.reload()]}>Rename Only</button> : <></>}
-                </label>
-                <label>Square Size:
-                    <select onChange={(evt) => {
-                        return [SetGridLength(parseInt(evt.target.value)),
-                        gridLengthSetterFunction(parseInt(evt.target.value))]
-                    }}
-                    >
-                        <option value={10}>100</option>
-                        <option value={20}>400</option>
-                        <option value={30}>900</option>
-                    </select>
-                    blocks
-                </label>
+                        >
+                            <option selected={GridLength===10? true : false} value={10}>100</option>
+                            <option selected={GridLength===20? true : false} value={20}>400</option>
+                            <option selected={GridLength===30? true : false} value={30}>900</option>
+                        </select>
+                        blocks
+                    </label>
+                </div>
+                <div className="village--form" id="explanation">
+                    <div className="explanation--title">Rules of Village Life:</div>
+                    <ol className="explanation">
+                        <li className="explanation">
+                            Click any block to direct Villagers to settle there, click again to remove them.
+                        </li>
+                        <li className="explanation">
+                            Villagers with less than 2 and more than 3 neighbors will die in the next generation
+                        </li>
+                        <li className="explanation">
+                            Blocks without life, and exactly 3 neighbors, will hold a Villager in the next generation
+                        </li>
+                        <li className="explanation">
+                            After settling is complete and the Village is manifested, the Villagers will live their lives autonomously according to the rules.
+                        </li>
+                    </ol>
+                </div>
             </div>
             <section className={`cells--grid--${GridLength}`}>
                 {

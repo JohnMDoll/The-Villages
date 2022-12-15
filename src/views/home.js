@@ -116,10 +116,10 @@ export const Home = () => {
                                                         {`Name: ${v.villageName}`}
                                                     </div>
                                                     <div>
-                                                        {`${v.maxGenerations} Generations`}
+                                                        {v.maxGenerations? `${v.maxGenerations} Generations` : `Untold Generations`}
                                                     </div>
                                                     <div>
-                                                        {`${v.maxPopulation} Simultaneous Villagers`}
+                                                        {v.maxPopulation? `${v.maxPopulation} Simultaneous Villagers`: `Limitless Villagers`} 
                                                     </div>
                                                     <div>{`${v?.seed?.length} block Village`}</div>
                                                 </div>

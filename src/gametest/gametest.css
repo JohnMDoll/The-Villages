@@ -126,7 +126,25 @@
     background-color: rgba(207, 241, 254, 0.65);
     border: 1px solid rgba(1, 1, 71, 0.315);
     border-radius: 15px;
-    font-size: x-large;
+    font-size: xx-large;
+}
+
+#explanation{
+    margin-top: 7px;
+}
+
+.explanation{
+    font-family: 'papyrus';
+    font-size: medium;
+    font-weight: 600;
+    background: none;
+    border: none;
+    width: 48vh;
+}
+
+li.explanation{
+    margin-left: 5vh;
+    margin-bottom: 0px;
 }
 
 body#game{
@@ -137,11 +155,11 @@ body#game{
 select {
     font-family: 'Old English Text MT';
     margin-inline: 5px;
-    font-size: x-large;
-    font-style: italic;
-    border-radius: 5px;
+    font-size: xx-large;
+    border-radius: 2px;
     background-color: rgba(255, 255, 255, 0);
     border: none;
+    border-bottom: 1.5px solid rgba(1, 1, 71, 0.515);
 }
 
 input {
@@ -211,6 +229,7 @@ h1.village--name{
     font-weight: 600;
     padding: 18px;
 }
+
 .slider{
     transform: rotateY(180deg) ;
 }

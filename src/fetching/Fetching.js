@@ -30,7 +30,7 @@ export const DuplicateUserNameCheck = (userName) => {
     return fetch(`http://localhost:8088/users?userName=${userName.userName}`)
         .then(res => res.json())
         .then(response => {
-            if (response.length > 0) {
+            if (response) {
                 // Duplicate userName. No good.
                 window.alert("Account with that username already exists")
             }
