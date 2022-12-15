@@ -25,19 +25,19 @@
     },
     {
       "villageId": 23,
-      "id": 5
-    },
-    {
-      "villageId": 6,
       "id": 2
     },
     {
-      "villageId": 1,
+      "villageId": 6,
       "id": 3
     },
     {
-      "villageId": 2,
+      "villageId": 1,
       "id": 4
+    },
+    {
+      "villageId": 2,
+      "id": 5
     },
     {
       "villageId": 13,

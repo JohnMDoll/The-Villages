@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { HighScoresGetter, HighScoresRanker, HighScoresUpdateNeededCheck } from "../fetching/Fetching"
+import { HighScoresGetter, HighScoresPoster, HighScoresRanker, HighScoresUpdateNeededCheck } from "../fetching/Fetching"
 
 //module for any adminnish things
 export const Admin = () => {
@@ -14,7 +14,7 @@ export const Admin = () => {
     useEffect( //is snarky and kicks non-admin users out if they have the audacity to navigate to /admin
         () => {
             const adminCheck = () => {
-                if (user.hasOwnProperty("admin") === false) {
+                if (user.hasOwnProperty("admin") === false && window.location.pathname === "/admin") {
                     window.alert("You don't belong here")
                     navigate("/")
                 }
@@ -23,11 +23,6 @@ export const Admin = () => {
         }, []
     )
 
-    const oldScores = () => {
-        let dbScores = HighScoresGetter()
-        return dbScores
-    }
-
     useEffect(
         () => {
             async function getSome() {
@@ -35,10 +30,21 @@ export const Admin = () => {
                 const otherResponse = await HighScoresGetter()
                 setActual(response)
                 setPosted(otherResponse)
-                return response
             }
             let some = getSome()
         }, []
+    )
+
+    useEffect(
+        () => {
+            let scoreMap = []
+            let readyScores = []
+            actualScores.length ? scoreMap = actualScores.flatMap(a => a) : console.log("no scores yet")
+            scoreMap.length > 1 ? readyScores = scoreMap.map(each => each.id) : console.log(scoreMap.length)
+            console.log(readyScores)
+            readyScores.length>1? readyScores.forEach((score, i) => HighScoresPoster(score, (i+1)) ) : console.log("not ready to post scores yet")
+
+        }, [actualScores]
     )
 
 

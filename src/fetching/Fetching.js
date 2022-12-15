@@ -137,30 +137,21 @@ const HighScoresReset = () => {
         .then(() => { return })
 }
 
-const HighScoresPoster = (topVillages) => {
-    let scoresList = topVillages.flat()
-    const currentHighs = () => {
-        return HighScoresGetter()
+export const HighScoresPoster = (villageId, id) => {
+    console.log(villageId, id)
+    return fetch(`http://localhost:8088/highScores/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            villageId: villageId,
+            id: id
+        })
     }
-    let foundHighs = currentHighs()
-    console.log(foundHighs)
-    let currentScoreSum = foundHighs.map(high => high.village.maxGenerations)
-    currentScoreSum = currentScoreSum.reduce((a, b) => a + b)
-    console.log(currentScoreSum)
-
-    return scoresList.map(eachHighScoreObj => {
-        return fetch("http://localhost:8088/highScores", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                villageId: eachHighScoreObj.id
-            })
-        }
-        )
-    })
+    )
 }
+
 
 export const HighScoresGetter = () => {
     return fetch(`http://localhost:8088/highScores?_expand=village`)
