@@ -175,7 +175,7 @@ export const GameRunning = ({ started, startedSetterFunction, allCellReferences,
                     Maximum Population: {maxPopulation}
                 </div>
                 <div className="slidecontainer">
-                    Speed <input type="range" className="slider" defaultValue={iterTime} min={50} max={5000} onChange={(evt) => {return speedSet(parseInt(evt.target.value))}}/>
+                    Speed <input type="range" className="slider" defaultValue={iterTime} min={100} max={3000} onChange={(evt) => {return speedSet(parseInt(evt.target.value))}}/>
                 </div>
             </section>
             <section className={`cells--grid--${gridLength}`}>

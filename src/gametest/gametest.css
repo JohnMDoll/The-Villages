@@ -211,3 +211,6 @@ h1.village--name{
     font-weight: 600;
     padding: 18px;
 }
+.slider{
+    transform: rotateY(180deg) ;
+}
