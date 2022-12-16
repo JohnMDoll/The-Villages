@@ -47,6 +47,11 @@ li{
     border: 1px solid rgba(1, 1, 71, 0.315);
 }
 
+ul.home--list li{
+    width: 25%;
+    min-width: 25vh;
+}
+
 li div{
     display: flex;
     flex-direction: column;

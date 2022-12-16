@@ -29,8 +29,8 @@ export const HandleLogin = (userName) => {
 export const DuplicateUserNameCheck = (userName) => {
     return fetch(`http://localhost:8088/users?userName=${userName.userName}`)
         .then(res => res.json())
-        .then(response => {
-            if (response) {
+        .then(response => { 
+            if (response.length > 0) {
                 // Duplicate userName. No good.
                 window.alert("Account with that username already exists")
             }
@@ -56,7 +56,6 @@ export const RegisterNewUser = (userName) => {
                     id: createdUser.id,
                     userName: createdUser.userName,
                 }))
-
             }
         })
 }

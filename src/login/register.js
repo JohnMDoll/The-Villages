@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { DuplicateUserNameCheck } from "../fetching/Fetching"
 import "./login.css"
@@ -6,13 +6,23 @@ import "./login.css"
 
 export const Register = () => {
     document.body.id = "login"
+    const navigate = useNavigate()
     const [userName, setUserName] = useState({ userName: "" })
+    const [user, setUser] = useState()
     // const [password, setPassword] = useState("")
 
     const handleRegister = (e) => {
         e.preventDefault()
         DuplicateUserNameCheck(userName)
+        const user = JSON.parse(localStorage.getItem("cap_user"))
+        if (user) {setUser(user)}
     }
+
+    useEffect(
+        () => {
+            if (user?.hasOwnProperty("id")) { navigate("/")}
+        },[userName, user]
+    )
 
     return (<>
         <section className="login" id="register">
@@ -25,7 +35,7 @@ export const Register = () => {
                         type="text"
                         onChange={evt => setUserName({ userName: evt.target.value })} />
                     <div className="buttonHolder" id="register">
-                        <button type="submit" id="register" onClick={userName.length? handleRegister : ""}
+                        <button type="submit" id="register" onClick={handleRegister}
                         >Identify</button>
                     </div>
                 </fieldset>

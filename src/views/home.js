@@ -23,11 +23,15 @@ export const Home = () => {
     useEffect(
         () => {
             if (villageList[0]?.hasOwnProperty("userId")) {
-                const oldOne = villageList.reduce((a, b) => { return a.maxGenerations > b.maxGenerations ? a : b })
+                let oldOne = villageList.filter((a) => {return a.maxGenerations >= 0})
+                oldOne = oldOne.reduce((a, b) => { return a.maxGenerations > b.maxGenerations ? a : b })
                 setOldVillage(oldOne)
-                const newOne = villageList.reduce((a, b) => { return a.maxGenerations < b.maxGenerations ? a : b })
+
+                let newOne = villageList.filter((a) => {return a.maxGenerations >= 0})
+                newOne = newOne.reduce((a, b) => { return a.maxGenerations < b.maxGenerations ? a : b })
                 setNewVillage(newOne)
-                const bussinOne = villageList.reduce((a, b) => { return a.maxPopulation > b.maxPopulation ? a : b })
+                let bussinOne = villageList.filter((a) => {return a.maxGenerations >= 0})
+                bussinOne = bussinOne.reduce((a, b) => { return a.maxPopulation > b.maxPopulation ? a : b })
                 setBussinVillage(bussinOne)
             }
         }, [villageList]

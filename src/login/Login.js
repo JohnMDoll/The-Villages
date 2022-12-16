@@ -6,6 +6,7 @@ import "./login.css"
 
 export const Login = () => {
     document.body.id = "login"
+    localStorage.removeItem("cap_user")
     const [userName, setUserName] = useState("")
     // const [password, setPassword] = useState("")
     const navigate = useNavigate()
