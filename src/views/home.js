@@ -124,12 +124,12 @@ export const Home = () => {
                                                     <div>{`${v?.seed?.length} block Village`}</div>
                                                 </div>
                                                 <button className="raze" onClick={(e) => {
-                                                    e.target.parentElement.className = "razing"
                                                     e.stopPropagation()
                                                     if (window.confirm(`Are you certain you wish to raze this village?`)) {
+                                                        e.target.parentElement.className = "razing"
                                                         RazeTheVillage(v.id)
                                                         RazeTheVillage(v.id)
-                                                        GetUserVillages(user.id, setVillageList)
+                                                        // GetUserVillages(user.id, setVillageList)
                                                         alert(`${user.userName}'s might has been unleashed.\n\n The people wept, and no trace of "${v.villageName}" remained.`)
                                                     }
                                                 }

@@ -1,5 +1,4 @@
-
-body#home{
+body#home {
     background-image: url("homePainting.png");
     background-attachment: unset;
     background-size: cover;
@@ -8,34 +7,36 @@ body#home{
     overflow: hidden;
 }
 
-.home{
+.home {
     display: flex;
     font-size: large;
 }
 
-.welcome{
+.welcome {
     width: 100%;
     flex-direction: column;
     font-size: xxx-large;
     font-weight: bold;
 }
-.side--header{
+
+.side--header {
     font-size: 30px;
     font-weight: 600;
     text-decoration: underline;
 }
-.right--home{
+
+.right--home {
     display: flex;
     width: 75%;
     padding-left: 3%;
 }
 
-.home--list{
+.home--list {
     padding: 0;
     margin-top: 0px;
 }
 
-li{
+li {
     padding-left: 8px;
     padding-top: 5px;
     margin: 1px;
@@ -47,34 +48,58 @@ li{
     border: 1px solid rgba(1, 1, 71, 0.315);
 }
 
-ul.home--list li{
+ul.home--list li {
     width: 25%;
     min-width: 25vh;
 }
 
-ul.home--list li.razing{
+@keyframes burn {
+    0% {
+        opacity: 100%
+    }
+
+    80% {
+        opacity: 25%
+    }
+
+    90% {
+        opacity: 10%
+    }
+
+    100% {
+        opacity: 0%;
+        visibility: hidden;
+    }
+}
+
+ul.home--list li.razing {
     background-image: url("Burning.gif");
-    width: 25%;
-    min-width: 25vh;
+    background-position: -3px;
+    background-size: 105%;
+    /* animation-name: burn;
+    animation-duration: 5s; */
+    visibility: visible;
+    opacity: 0;
+    transition: opacity 14s ease-out;
 }
 
-li div{
+li div {
     display: flex;
     flex-direction: column;
 }
 
-li div:first-child{
+li div:first-child {
     font-size: large;
 }
 
-li div:not(:first-child){
+li div:not(:first-child) {
     font-size: medium;
     padding-left: 10%;
     font-family: "papyrus";
     font-weight: 600;
 }
 
-div button.raze{
+div button.raze {
     display: flex;
     justify-self: center;
     width: fit-content;
@@ -86,26 +111,26 @@ div button.raze{
     margin-bottom: 2px;
 }
 
-.home--list{
+.home--list {
     display: flex;
     flex-wrap: wrap;
     overflow-y: auto;
     max-height: 77vh;
 }
 
-li{
+li {
     margin: 7px;
     margin-top: 3px;
 }
 
-.left--home{
+.left--home {
     display: flex;
     flex-direction: column;
     width: 25%;
     padding-left: 2%;
 }
 
-.stats--container{
+.stats--container {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -114,7 +139,7 @@ li{
     margin-right: 7%;
 }
 
-.home--stats{
+.home--stats {
     background-color: rgba(207, 241, 254, 0.8);
     font-size: x-large;
     display: flex;
@@ -129,11 +154,11 @@ li{
     border: 1px solid rgba(1, 1, 71, 0.315);
 }
 
-.stat:first-child{
+.stat:first-child {
     padding-top: 8%;
 }
 
-.stat{
+.stat {
     font-size: large;
     display: flex;
     flex-direction: column;
