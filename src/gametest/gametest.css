@@ -15,10 +15,11 @@
     align-items: center;
     height: 8vh;
     width: 8vh;
-    background-image: url("rick.gif");
+    background-image: url("rick.gif"), url("activebgd.jpg");
     background-size: cover;
     background-position-x: center;
-    background-color: rgba(0, 0, 0, 0.259);
+    background-position-y: center;
+    /* background-color: rgba(0, 0, 0, 0.259); */
 }
 
 .dead--10 {
@@ -28,8 +29,8 @@
     align-items: center;
     height: 8vh;
     width: 8vh;
-    background-image: url("./dead.png");
-    background-size: contain;
+    background-image: url("betterDead.jpg"), url("betterDead.jpg");
+    background-size: cover;
 }
 
 .cells--grid--10 {
@@ -68,7 +69,7 @@
     align-items: center;
     height: 3.9vh;
     width: 3.9vh;
-    background-image: url("./dead.png");
+    background-image: url("betterDead.jpg");
     background-size: contain;
 }
 
@@ -108,7 +109,7 @@
     align-items: center;
     height: 2.55vh;
     width: 2.55vh;
-    background-image: url("./dead.png");
+    background-image: url("betterDead.jpg");
     background-size: contain;
 }
 
