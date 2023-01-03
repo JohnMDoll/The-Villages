@@ -23,13 +23,13 @@ export const Home = () => {
     useEffect(
         () => {
             if (villageList[0]?.hasOwnProperty("userId")) {
-                let oldOne = villageList.filter((a) => {return a.maxGenerations >= 0})
+                let oldOne = villageList.filter((a) => { return a.maxGenerations >= 0 })
                 oldOne = oldOne.reduce((a, b) => { return a.maxGenerations > b.maxGenerations ? a : b })
                 setOldVillage(oldOne)
-                let newOne = villageList.filter((a) => {return a.maxGenerations >= 0})
+                let newOne = villageList.filter((a) => { return a.maxGenerations >= 0 })
                 newOne = newOne.reduce((a, b) => { return a.maxGenerations < b.maxGenerations ? a : b })
                 setNewVillage(newOne)
-                let bussinOne = villageList.filter((a) => {return a.maxGenerations >= 0})
+                let bussinOne = villageList.filter((a) => { return a.maxGenerations >= 0 })
                 bussinOne = bussinOne.reduce((a, b) => { return a.maxPopulation > b.maxPopulation ? a : b })
                 setBussinVillage(bussinOne)
             }
@@ -47,7 +47,7 @@ export const Home = () => {
                                 {`The village of ${old.villageName}`}
                             </div>
                             <div className="stat">
-                                {`${old.maxGenerations} generations`}
+                                {`${old.maxGenerations} Generations`}
                             </div>
                             <div className="stat">
                                 {`${old?.seed.length} block Village`}
@@ -59,7 +59,7 @@ export const Home = () => {
                                 {`The village of ${newVillage.villageName}`}
                             </div>
                             <div className="stat">
-                                {`${newVillage.maxGenerations} generations`}
+                                {`${newVillage.maxGenerations} Generations`}
                             </div>
                             <div className="stat">
                                 {`${newVillage?.seed?.length} block Village`}
@@ -71,7 +71,7 @@ export const Home = () => {
                                 {`The village of ${bussinVillage.villageName}`}
                             </div>
                             <div className="stat">
-                                {`${bussinVillage.maxGenerations} generations`}
+                                {bussinVillage.maxPopulation ? `${bussinVillage.maxPopulation} Simultaneous Villagers` : `Countless Villagers`}
                             </div>
                             <div className="stat">
                                 {`${bussinVillage?.seed?.length} block Village`}
@@ -113,13 +113,13 @@ export const Home = () => {
                                                 }}>
                                                 <div key={v.id}>
                                                     <div>
-                                                        {v.villageName? `Name: ${v.villageName}` : `Unnamed Village` }
+                                                        {v.villageName ? `Name: ${v.villageName}` : `Unnamed Village`}
                                                     </div>
                                                     <div>
-                                                        {v.maxGenerations? `${v.maxGenerations} Generations` : `Untold Generations`}
+                                                        {v.maxGenerations ? `${v.maxGenerations} Generations` : `Untold Generations`}
                                                     </div>
                                                     <div>
-                                                        {v.maxPopulation? `${v.maxPopulation} Simultaneous Villagers`: `Limitless Villagers`} 
+                                                        {v.maxPopulation ? `${v.maxPopulation} Simultaneous Villagers` : `Limitless Villagers`}
                                                     </div>
                                                     <div>{`${v?.seed?.length} block Village`}</div>
                                                 </div>
