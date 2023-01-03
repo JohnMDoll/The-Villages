@@ -137,14 +137,14 @@ export const CellFactory = ({ started, allCellReferences, cellReferenceSetterFun
                         {existingVillage ? <button className="name--button" onClick={() => [VillageUpdater(villageCopy), navigate("../home"), window.location.reload()]}>Rename Only</button> : <></>}
                     </label>
                     <label>Square Size:
-                        <select onChange={(evt) => {
+                        <select defaultValue={GridLength} onChange={(evt) => {
                             return [SetGridLength(parseInt(evt.target.value)),
                             gridLengthSetterFunction(parseInt(evt.target.value))]
                         }}
                         >
-                            <option selected={GridLength===10? true : false} value={10}>100</option>
-                            <option selected={GridLength===20? true : false} value={20}>400</option>
-                            <option selected={GridLength===30? true : false} value={30}>900</option>
+                            <option value={10}>100</option>
+                            <option value={20}>400</option>
+                            <option value={30}>900</option>
                         </select>
                         blocks
                     </label>

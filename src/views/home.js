@@ -26,7 +26,6 @@ export const Home = () => {
                 let oldOne = villageList.filter((a) => {return a.maxGenerations >= 0})
                 oldOne = oldOne.reduce((a, b) => { return a.maxGenerations > b.maxGenerations ? a : b })
                 setOldVillage(oldOne)
-
                 let newOne = villageList.filter((a) => {return a.maxGenerations >= 0})
                 newOne = newOne.reduce((a, b) => { return a.maxGenerations < b.maxGenerations ? a : b })
                 setNewVillage(newOne)
@@ -44,7 +43,6 @@ export const Home = () => {
                     <>
                         <div className="home--stats" id="longest--village">
                             {`Longest Living Village: `}
-
                             <div className="stat">
                                 {`The village of ${old.villageName}`}
                             </div>
@@ -57,7 +55,6 @@ export const Home = () => {
                         </div>
                         <div className="home--stats" id="shortest--village">
                             {`Shortest Living Village: `}
-
                             <div className="stat">
                                 {`The village of ${newVillage.villageName}`}
                             </div>
@@ -70,7 +67,6 @@ export const Home = () => {
                         </div>
                         <div className="home--stats">
                             {`Most Bussin Village: `}
-
                             <div className="stat">
                                 {`The village of ${bussinVillage.villageName}`}
                             </div>
@@ -117,7 +113,7 @@ export const Home = () => {
                                                 }}>
                                                 <div key={v.id}>
                                                     <div>
-                                                        {`Name: ${v.villageName}`}
+                                                        {v.villageName? `Name: ${v.villageName}` : `Unnamed Village` }
                                                     </div>
                                                     <div>
                                                         {v.maxGenerations? `${v.maxGenerations} Generations` : `Untold Generations`}
@@ -130,6 +126,7 @@ export const Home = () => {
                                                 <button className="raze" onClick={(e) => {
                                                     e.stopPropagation()
                                                     if (window.confirm(`Are you certain you wish to raze this village?`)) {
+                                                        RazeTheVillage(v.id)
                                                         RazeTheVillage(v.id)
                                                         GetUserVillages(user.id, setVillageList)
                                                         alert(`${user.userName}'s might has been unleashed.\n\n The people wept, and no trace of "${v.villageName}" remained.`)

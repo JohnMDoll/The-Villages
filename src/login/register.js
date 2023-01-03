@@ -16,6 +16,7 @@ export const Register = () => {
         DuplicateUserNameCheck(userName)
         const user = JSON.parse(localStorage.getItem("cap_user"))
         if (user) {setUser(user)}
+        navigate("/")
     }
 
     useEffect(
