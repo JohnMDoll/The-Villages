@@ -46715,7 +46715,7 @@
     },
     {
       "userId": 1,
-      "maxGenerations": 44,
+      "maxGenerations": 54,
       "villageName": "Demoville",
       "gridLength": 10,
       "seed": [
@@ -46769,7 +46769,7 @@
         },
         {
           "address": "2--3",
-          "status": true
+          "status": "initialCell"
         },
         {
           "address": "2--4",
@@ -46805,11 +46805,11 @@
         },
         {
           "address": "3--2",
-          "status": true
+          "status": "initialCell"
         },
         {
           "address": "3--3",
-          "status": true
+          "status": "initialCell"
         },
         {
           "address": "3--4",
@@ -46825,7 +46825,7 @@
         },
         {
           "address": "3--7",
-          "status": true
+          "status": "initialCell"
         },
         {
           "address": "3--8",
@@ -46845,19 +46845,19 @@
         },
         {
           "address": "4--2",
-          "status": true
+          "status": "initialCell"
         },
         {
           "address": "4--3",
-          "status": "initialCell"
+          "status": true
         },
         {
           "address": "4--4",
-          "status": "initialCell"
+          "status": true
         },
         {
           "address": "4--5",
-          "status": "initialCell"
+          "status": true
         },
         {
           "address": "4--6",
@@ -46865,11 +46865,11 @@
         },
         {
           "address": "4--7",
-          "status": true
+          "status": "initialCell"
         },
         {
           "address": "4--8",
-          "status": true
+          "status": "initialCell"
         },
         {
           "address": "4--9",
@@ -46893,7 +46893,7 @@
         },
         {
           "address": "5--4",
-          "status": "initialCell"
+          "status": "initialCell--10"
         },
         {
           "address": "5--5",
@@ -46909,7 +46909,7 @@
         },
         {
           "address": "5--8",
-          "status": true
+          "status": "initialCell"
         },
         {
           "address": "5--9",
@@ -46937,11 +46937,11 @@
         },
         {
           "address": "6--5",
-          "status": "initialCell"
+          "status": true
         },
         {
           "address": "6--6",
-          "status": "initialCell"
+          "status": true
         },
         {
           "address": "6--7",
@@ -46973,11 +46973,11 @@
         },
         {
           "address": "7--4",
-          "status": true
+          "status": "initialCell"
         },
         {
           "address": "7--5",
-          "status": true
+          "status": "initialCell"
         },
         {
           "address": "7--6",
@@ -46985,7 +46985,7 @@
         },
         {
           "address": "7--7",
-          "status": true
+          "status": "initialCell"
         },
         {
           "address": "7--8",
@@ -47017,7 +47017,7 @@
         },
         {
           "address": "8--5",
-          "status": true
+          "status": "initialCell"
         },
         {
           "address": "8--6",
@@ -47025,11 +47025,11 @@
         },
         {
           "address": "8--7",
-          "status": true
+          "status": "initialCell"
         },
         {
           "address": "8--8",
-          "status": true
+          "status": "initialCell"
         },
         {
           "address": "8--9",
@@ -47069,7 +47069,7 @@
         },
         {
           "address": "9--8",
-          "status": true
+          "status": "initialCell"
         },
         {
           "address": "9--9",

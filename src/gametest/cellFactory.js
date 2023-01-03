@@ -64,7 +64,7 @@ export const CellFactory = ({ started, allCellReferences, cellReferenceSetterFun
 
                         } else if (cell.status !== false) {
                             cell.status = (true)
-                        } //do we even need to change the div to checked or unchecked now? That was initially intended to give an addressable attribute
+                        } //do we even need to change the div to checked or unchecked now? That was initially intended to give an addressable attribute, now handled by className reassignments
                         return [
                             evt.target.checked = !evt.target.checked,
                             evt.target.className = cellClasser(cell.status)

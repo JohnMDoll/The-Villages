@@ -124,6 +124,7 @@ export const Home = () => {
                                                     <div>{`${v?.seed?.length} block Village`}</div>
                                                 </div>
                                                 <button className="raze" onClick={(e) => {
+                                                    e.target.parentElement.className = "razing"
                                                     e.stopPropagation()
                                                     if (window.confirm(`Are you certain you wish to raze this village?`)) {
                                                         RazeTheVillage(v.id)

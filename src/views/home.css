@@ -52,6 +52,12 @@ ul.home--list li{
     min-width: 25vh;
 }
 
+ul.home--list li.razing{
+    background-image: url("Burning.gif");
+    width: 25%;
+    min-width: 25vh;
+}
+
 li div{
     display: flex;
     flex-direction: column;
