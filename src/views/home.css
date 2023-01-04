@@ -53,34 +53,13 @@ ul.home--list li {
     min-width: 25vh;
 }
 
-@keyframes burn {
-    0% {
-        opacity: 100%
-    }
-
-    80% {
-        opacity: 25%
-    }
-
-    90% {
-        opacity: 10%
-    }
-
-    100% {
-        opacity: 0%;
-        visibility: hidden;
-    }
-}
-
 ul.home--list li.razing {
     background-image: url("Burning.gif");
     background-position: -3px;
     background-size: 105%;
-    /* animation-name: burn;
-    animation-duration: 5s; */
     visibility: visible;
     opacity: 0;
-    transition: opacity 14s ease-out;
+    transition: opacity 10s ease-out;
 }
 
 li div {
