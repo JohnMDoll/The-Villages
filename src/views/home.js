@@ -97,7 +97,7 @@ export const Home = () => {
                         <div className="welcome">Welcome {user.userName}!</div>
                         <section className="home">
                             <div className="left--home">
-                                <div className="side--header">Remarkable Villages:</div>
+                                <div className="side--header">Noteworthy Villages:</div>
                                 <div className="stats--container">{villageStats}</div>
                             </div>
                             <div className="right--home">

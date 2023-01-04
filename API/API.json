@@ -20,6 +20,10 @@
     {
       "userName": "Vanessa",
       "id": 5
+    },
+    {
+      "userName": "Bruce",
+      "id": 6
     }
   ],
   "highScores": [
@@ -35458,7 +35462,7 @@
     {
       "userId": 1,
       "maxGenerations": 105,
-      "villageName": "Rolling Hills",
+      "villageName": "Rolling Hill",
       "gridLength": 10,
       "seed": [
         {
