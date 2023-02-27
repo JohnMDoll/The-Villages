@@ -15,11 +15,11 @@ export const TheKingdom = () => {
     const [users, setUsers] = useState("")
 
     const scoreLister = () => {
-        let smalls = highScores.filter((scores) => scores.village.gridLength === 10)
+        let smalls = highScores.filter((scores) => scores.gridLength === 10)
         setSmall(smalls)
-        let mediums = highScores.filter((scores) => scores.village.gridLength === 20)
+        let mediums = highScores.filter((scores) => scores.gridLength === 20)
         setMedium(mediums)
-        let larges = highScores.filter((scores) => scores.village.gridLength === 30)
+        let larges = highScores.filter((scores) => scores.gridLength === 30)
         setLarge(larges)
 
         let scoreObjArrays = [smalls, mediums, larges]
@@ -29,16 +29,16 @@ export const TheKingdom = () => {
     const displayGenerator = (arrays) => {
         let stuff = arrays.map((oneSizeArray, i) => {
             return (
-                <section className={`highscores--${oneSizeArray[0]?.village?.gridLength}`} key={`eachSize--${i}`}>
-                    <div className="kingdom--header">Best {oneSizeArray[0]?.village?.gridLength * oneSizeArray[0]?.village?.gridLength} Block Villages</div>
+                <section className={`highscores--${oneSizeArray[0]?.gridLength}`} key={`eachSize--${i}`}>
+                    <div className="kingdom--header">Best {oneSizeArray[0]?.gridLength * oneSizeArray[0]?.gridLength} Block Villages</div>
                     <ul className="kingdom--list" key={`sizeList--${oneSizeArray.id}`}>
                         {
                             oneSizeArray.map((arr, i) => {
                                 return (
                                     <li className="kingdom--item" key={`villageItem--${i}`}>
-                                        <div key={`villageName--${i}`}><b>{arr.village?.villageName}</b></div>
-                                        <div key={`generations--${i}`}>{arr.village?.maxGenerations} generations</div>
-                                        <div key={`userName--${i}`}>lorded over by {(users.find(user => user.id === arr.village?.userId).userName)}</div>
+                                        <div key={`villageName--${i}`}><b>{arr.villageName}</b></div>
+                                        <div key={`generations--${i}`}>{arr.maxGenerations} generations</div>
+                                        <div key={`userName--${i}`}>lorded over by {(users.find(user => user.id === arr.userId).userName)}</div>
                                     </li>
                                 )
                             })

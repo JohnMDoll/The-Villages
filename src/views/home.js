@@ -59,7 +59,7 @@ export const Home = () => {
                                 {`The village of ${newVillage.villageName}`}
                             </div>
                             <div className="stat">
-                                {`${newVillage.maxGenerations} Generations`}
+                                { newVillage.maxGenerations? `${newVillage.maxGenerations} Generations`: "Countless Generations"}
                             </div>
                             <div className="stat">
                                 {`${newVillage?.seed?.length} block Village`}

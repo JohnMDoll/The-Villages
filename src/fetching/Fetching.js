@@ -1,13 +1,13 @@
 // module contains all API functions
 
 export const GetUsers = () => {
-    return fetch(`http://localhost:8088/users`)
+    return fetch(`http://localhost:8000/users`)
         .then(res => res.json())
 }
 
 //site login process handler
 export const HandleLogin = (userName) => {
-    return fetch(`http://localhost:8088/users?userName=${userName}`)
+    return fetch(`http://localhost:8000/users?userName=${userName}`)
         .then(res => res.json())
         .then(foundUsers => {
             if (foundUsers.length === 1) {
@@ -27,7 +27,7 @@ export const HandleLogin = (userName) => {
 
 // Register.js for ensuring new account not registered with dupe user name
 export const DuplicateUserNameCheck = (userName) => {
-    return fetch(`http://localhost:8088/users?userName=${userName.userName}`)
+    return fetch(`http://localhost:8000/users?userName=${userName.userName}`)
         .then(res => res.json())
         .then(response => { 
             if (response.length > 0) {
@@ -42,7 +42,7 @@ export const DuplicateUserNameCheck = (userName) => {
 }
 // Register.js function to register a new user
 export const RegisterNewUser = (userName) => {
-    return fetch("http://localhost:8088/users", {
+    return fetch("http://localhost:8000/users", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -61,7 +61,7 @@ export const RegisterNewUser = (userName) => {
 }
 
 export const MaxGenPutter = (villageObj) => {
-    return fetch(`http://localhost:8088/villages/${villageObj.id}`, {
+    return fetch(`http://localhost:8000/villages/${villageObj.id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
@@ -70,7 +70,7 @@ export const MaxGenPutter = (villageObj) => {
             userId: villageObj.userId,
             maxGenerations: villageObj.maxGenerations,
             villageName: villageObj.villageName,
-            gridLength: villageObj.gridLength,
+            gridLength: Math.sqrt(villageObj.seed.length),
             seed: villageObj.seed,
             maxPopulation: villageObj.maxPopulation
         })
@@ -78,7 +78,7 @@ export const MaxGenPutter = (villageObj) => {
 }
 
 export const VillageSaver = (villageObj, seedObj) => {
-    return fetch("http://localhost:8088/villages", {
+    return fetch("http://localhost:8000/villages", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -95,7 +95,7 @@ export const VillageSaver = (villageObj, seedObj) => {
 }
 
 export const VillageUpdater = (villageObj) => {
-    return fetch(`http://localhost:8088/villages/${villageObj.id}`, {
+    return fetch(`http://localhost:8000/villages/${villageObj.id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
@@ -106,19 +106,19 @@ export const VillageUpdater = (villageObj) => {
 }
 
 export const GetUserVillages = (user, setterFunction) => {
-    return fetch(`http://localhost:8088/villages?userId=${user}`)
+    return fetch(`http://localhost:8000/villages?userId=${user}`)
         .then(res => res.json())
         .then(res => setterFunction(res))
 }
 
 export const RazeTheVillage = (id) => {
-    return fetch(`http://localhost:8088/villages/${id}`, {
+    return fetch(`http://localhost:8000/villages/${id}`, {
         method: "DELETE"
     })
 }
 
 export const HighScoresRanker = () => {
-    return fetch(`http://localhost:8088/villages`)
+    return fetch(`http://localhost:8000/villages`)
         .then(res => res.json())
         .then(res => {
             let [allSmall, allMedium, allLarge] = [res.filter((vills) => vills.gridLength === 10), res.filter((vills) => vills.gridLength === 20), res.filter((vills) => vills.gridLength === 30)]
@@ -130,15 +130,15 @@ export const HighScoresRanker = () => {
 }
 
 const HighScoresReset = () => {
-    return fetch(`http://localhost:8088/highScores`)
+    return fetch(`http://localhost:8000/highScores`)
         .then(res => res.json())
-        .then(res => res.map(each => fetch(`http://localhost:8088/highScores/${each.id}`, { method: "DELETE" })))
+        .then(res => res.map(each => fetch(`http://localhost:8000/highScores/${each.id}`, { method: "DELETE" })))
         .then(() => { return })
 }
 
 export const HighScoresPoster = (villageId, id) => {
     console.log(villageId, id)
-    return fetch(`http://localhost:8088/highScores/${id}`, {
+    return fetch(`http://localhost:8000/highScores/${id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
@@ -153,7 +153,7 @@ export const HighScoresPoster = (villageId, id) => {
 
 
 export const HighScoresGetter = () => {
-    return fetch(`http://localhost:8088/highScores?_expand=village`)
+    return fetch(`http://localhost:8000/highScores?_expand=village`)
         .then(res => res.json())
         .then((res) => { return res })
 }
