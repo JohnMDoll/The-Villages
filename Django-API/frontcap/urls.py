@@ -15,12 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from frontcapapi.views import register_user, login_user, Villages
+from frontcapapi.views import register_user, login_user, Villages, HighScores
 from rest_framework import routers
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'villages', Villages, 'village')
-router.register(r'highScores', Villages, 'village')
+router.register(r'highScores', HighScores, 'highscore')
 
 urlpatterns = [
     path('', include(router.urls)),

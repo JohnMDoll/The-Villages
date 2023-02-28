@@ -30,11 +30,15 @@ class HighScores(ViewSet):
         if 'userId' in self.request.query_params:
             villages = Village.objects.filter(user_id=request.query_params['userId'])
         else:
-            villages = Village.objects.all()
+            grids = [10, 20, 30]
+            villages = []
+            for grid_length in grids:
+                some_villages = Village.objects.filter(grid_length=grid_length, max_generations__isnull=False, max_population__isnull=False).order_by('-max_generations')[:5]
+                serialized = VillageSerializer(some_villages, many=True, context={'request': request})
+                villages.extend(serialized.data)
 
-        serialized = VillageSerializer(villages, many=True, context={'request': request})
 
-        return Response(serialized.data)
+        return Response(villages)
 
     def destroy(self, request, pk=None):
         '''deletes a high score'''
