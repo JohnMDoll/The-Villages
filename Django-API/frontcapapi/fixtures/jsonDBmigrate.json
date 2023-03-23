@@ -1,8 +1,0 @@
-[{
-    "pk": 1,
-    "model": "frontcapapi.user",
-    "fields": {
-        "user_name": 7,
-        "is_staff": 5
-    }
-}]
