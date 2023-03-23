@@ -24,7 +24,7 @@ def login_user(request):
 
         # Use the built-in authenticate method to verify
         name = request.GET['userName']
-        pass_word = 'password'
+        pass_word = request.GET['password']
         authenticated_user = authenticate(username=name, password=pass_word)
 
         # If authentication was successful, respond with their token
@@ -74,7 +74,7 @@ def register_user(request):
     # on Django's built-in User model
     new_user = User.objects.create_user(
         username=req_body['userName'],
-        password='password',
+        password=req_body['password'],
     )
 
     # Commit the user to the database by saving it

@@ -37,7 +37,6 @@ class HighScores(ViewSet):
                 serialized = VillageSerializer(some_villages, many=True, context={'request': request})
                 villages.extend(serialized.data)
 
-
         return Response(villages)
 
     def destroy(self, request, pk=None):

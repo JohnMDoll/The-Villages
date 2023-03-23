@@ -8,7 +8,7 @@ export const Login = () => {
     document.body.id = "login"
     localStorage.removeItem("cap_user")
     const [userName, setUserName] = useState("")
-    // const [password, setPassword] = useState("")
+    const [password, setPassword] = useState("")
     const navigate = useNavigate()
 
     const handleLogin = (e) => {
@@ -27,9 +27,9 @@ export const Login = () => {
                     <input className="login--input" required autoFocus placeholder="username" 
                     type="text" value={userName} 
                     onChange={evt => setUserName(evt.target.value)} />
-                    {/* <input required placeholder="password" 
-                    type="password" value={password}  */}
-                    {/* onChange={evt => setPassword(evt.target.value)}/> */}
+                    <input required placeholder="password" 
+                    type="password" value={password} 
+                    onChange={evt => setPassword(evt.target.value)} />
                     <div className="buttonHolder">
                     <button type="submit" id="login" onClick={userName.length? handleLogin: ""}>Declare!</button>
                     <button type="button" id="register" onClick={()=>{navigate("/register")}}>Register</button>

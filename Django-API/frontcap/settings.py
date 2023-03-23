@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+from django.core.management.utils import get_random_secret_key
 from pathlib import Path
 import os
 
@@ -24,9 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('MY_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', "False")
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", '').split(",")
+DEVELOPMENT_MODE = os.environ.get("DEVELOPMENT_MODE", "False")
 
 
 # Application definition
@@ -58,7 +59,8 @@ REST_FRAMEWORK = {
 # THIS IS NEW
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
-    'http://127.0.0.1:3000'
+    'http://127.0.0.1:3000',
+    'https://johnmdoll.github.io',
 )
 
 # UPDATE THIS
@@ -138,7 +140,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = 'static/'
 
 # Default primary key field type
