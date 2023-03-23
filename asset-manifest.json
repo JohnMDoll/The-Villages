@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.e04b75b1.css",
-    "main.js": "/static/js/main.1a64012d.js",
-    "static/media/Burning.gif": "/static/media/Burning.f0a3b146551c228090ef.gif",
-    "static/media/rick.gif": "/static/media/rick.b9ca2784edc1952a7179.gif",
-    "static/media/background.jpg": "/static/media/background.94be6c422e39e9c95724.jpg",
-    "static/media/kingdomCentered.png": "/static/media/kingdomCentered.68a7dcbf21e3dc967eba.png",
-    "static/media/homePainting.png": "/static/media/homePainting.89e3a29daf2aadeb11af.png",
-    "static/media/betterDead.jpg": "/static/media/betterDead.25c80467557f989b7285.jpg",
-    "static/media/activebgd.jpg": "/static/media/activebgd.4c22e944c2b9adb65e20.jpg",
-    "static/media/200w.webp": "/static/media/200w.6634633aa139f384e705.webp",
-    "index.html": "/index.html",
-    "main.e04b75b1.css.map": "/static/css/main.e04b75b1.css.map",
-    "main.1a64012d.js.map": "/static/js/main.1a64012d.js.map"
+    "main.css": "/The-Villages/static/css/main.de9dcc68.css",
+    "main.js": "/The-Villages/static/js/main.1a64012d.js",
+    "static/media/Burning.gif": "/The-Villages/static/media/Burning.f0a3b146551c228090ef.gif",
+    "static/media/rick.gif": "/The-Villages/static/media/rick.b9ca2784edc1952a7179.gif",
+    "static/media/background.jpg": "/The-Villages/static/media/background.94be6c422e39e9c95724.jpg",
+    "static/media/kingdomCentered.png": "/The-Villages/static/media/kingdomCentered.68a7dcbf21e3dc967eba.png",
+    "static/media/homePainting.png": "/The-Villages/static/media/homePainting.89e3a29daf2aadeb11af.png",
+    "static/media/betterDead.jpg": "/The-Villages/static/media/betterDead.25c80467557f989b7285.jpg",
+    "static/media/activebgd.jpg": "/The-Villages/static/media/activebgd.4c22e944c2b9adb65e20.jpg",
+    "static/media/200w.webp": "/The-Villages/static/media/200w.6634633aa139f384e705.webp",
+    "index.html": "/The-Villages/index.html",
+    "main.de9dcc68.css.map": "/The-Villages/static/css/main.de9dcc68.css.map",
+    "main.1a64012d.js.map": "/The-Villages/static/js/main.1a64012d.js.map"
   },
   "entrypoints": [
-    "static/css/main.e04b75b1.css",
+    "static/css/main.de9dcc68.css",
     "static/js/main.1a64012d.js"
   ]
 }
