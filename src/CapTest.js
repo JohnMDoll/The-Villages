@@ -7,7 +7,7 @@ import { Authorized } from './views/Authorized';
 import { Register } from './login/register';
 
 export const CapTest = () => {
-  return <Routes>
+	return <Routes>
 		<Route path="/login" element={<Login />} />
 		<Route path="/register" element={<Register />} />
 
