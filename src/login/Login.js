@@ -14,7 +14,7 @@ export const Login = () => {
     const handleLogin = (e) => {
         e.preventDefault()
 
-        HandleLogin(userName)
+        HandleLogin(userName, password)
         .then(() => {return navigate("/")})
     }
 

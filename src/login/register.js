@@ -9,11 +9,11 @@ export const Register = () => {
     const navigate = useNavigate()
     const [userName, setUserName] = useState({ userName: "" })
     const [user, setUser] = useState()
-    const [password, setPassword] = useState("")
+    const [password, setPassword] = useState({ password: "" })
 
     const handleRegister = (e) => {
         e.preventDefault()
-        DuplicateUserNameCheck(userName)
+        DuplicateUserNameCheck(userName, password)
         const user = JSON.parse(localStorage.getItem("cap_user"))
         if (user) { setUser(user) }
         navigate("/")
@@ -37,7 +37,7 @@ export const Register = () => {
                         onChange={evt => setUserName({ userName: evt.target.value })} />
                     <input required placeholder="password"
                         type="password" value={password}
-                        onChange={evt => setPassword(evt.target.value)} />
+                        onChange={evt => setPassword({ password: evt.target.value })} />
                     <div className="buttonHolder" id="register">
                         <button type="submit" id="register" onClick={handleRegister}
                         >Identify</button>

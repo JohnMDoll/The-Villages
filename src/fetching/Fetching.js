@@ -1,13 +1,13 @@
 // module contains all API functions
 
 export const GetUsers = () => {
-    return fetch(`http://localhost:8000/users`)
+    return fetch(`https://plankton-app-fo6gv.ondigitalocean.app/users`)
         .then(res => res.json())
 }
 
 //site login process handler
-export const HandleLogin = (userName) => {
-    return fetch(`http://localhost:8000/users?userName=${userName}`)
+export const HandleLogin = (userName, password) => {
+    return fetch(`https://plankton-app-fo6gv.ondigitalocean.app/users?userName=${userName}&password=${password}`)
         .then(res => res.json())
         .then(foundUsers => {
             if (foundUsers.length === 1) {
@@ -26,8 +26,8 @@ export const HandleLogin = (userName) => {
 }
 
 // Register.js for ensuring new account not registered with dupe user name
-export const DuplicateUserNameCheck = (userName) => {
-    return fetch(`http://localhost:8000/users?userName=${userName.userName}`)
+export const DuplicateUserNameCheck = (userName, password) => {
+    return fetch(`https://plankton-app-fo6gv.ondigitalocean.app/users?userName=${userName.userName}`)
         .then(res => res.json())
         .then(response => { 
             if (response.length > 0) {
@@ -36,18 +36,21 @@ export const DuplicateUserNameCheck = (userName) => {
             }
             else {
                 // Good userName, create user.
-                RegisterNewUser(userName)
+                RegisterNewUser(userName, password)
             }
         })
 }
 // Register.js function to register a new user
-export const RegisterNewUser = (userName) => {
-    return fetch("http://localhost:8000/users", {
+export const RegisterNewUser = (userName, password) => {
+    return fetch("https://plankton-app-fo6gv.ondigitalocean.app/users", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(userName)
+        body: JSON.stringify({
+            userName: userName.userName,
+            password: password.password
+        })
     })
         .then(res => res.json())
         .then(createdUser => {
@@ -61,7 +64,7 @@ export const RegisterNewUser = (userName) => {
 }
 
 export const MaxGenPutter = (villageObj) => {
-    return fetch(`http://localhost:8000/villages/${villageObj.id}`, {
+    return fetch(`https://plankton-app-fo6gv.ondigitalocean.app/villages/${villageObj.id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
@@ -78,7 +81,7 @@ export const MaxGenPutter = (villageObj) => {
 }
 
 export const VillageSaver = (villageObj, seedObj) => {
-    return fetch("http://localhost:8000/villages", {
+    return fetch("https://plankton-app-fo6gv.ondigitalocean.app/villages", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -95,7 +98,7 @@ export const VillageSaver = (villageObj, seedObj) => {
 }
 
 export const VillageUpdater = (villageObj) => {
-    return fetch(`http://localhost:8000/villages/${villageObj.id}`, {
+    return fetch(`https://plankton-app-fo6gv.ondigitalocean.app/villages/${villageObj.id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
@@ -106,19 +109,19 @@ export const VillageUpdater = (villageObj) => {
 }
 
 export const GetUserVillages = (user, setterFunction) => {
-    return fetch(`http://localhost:8000/villages?userId=${user}`)
+    return fetch(`https://plankton-app-fo6gv.ondigitalocean.app/villages?userId=${user}`)
         .then(res => res.json())
         .then(res => setterFunction(res))
 }
 
 export const RazeTheVillage = (id) => {
-    return fetch(`http://localhost:8000/villages/${id}`, {
+    return fetch(`https://plankton-app-fo6gv.ondigitalocean.app/villages/${id}`, {
         method: "DELETE"
     })
 }
 
 export const HighScoresRanker = () => {
-    return fetch(`http://localhost:8000/villages`)
+    return fetch(`https://plankton-app-fo6gv.ondigitalocean.app/villages`)
         .then(res => res.json())
         .then(res => {
             let [allSmall, allMedium, allLarge] = [res.filter((vills) => vills.gridLength === 10), res.filter((vills) => vills.gridLength === 20), res.filter((vills) => vills.gridLength === 30)]
@@ -130,15 +133,15 @@ export const HighScoresRanker = () => {
 }
 
 const HighScoresReset = () => {
-    return fetch(`http://localhost:8000/highScores`)
+    return fetch(`https://plankton-app-fo6gv.ondigitalocean.app/highScores`)
         .then(res => res.json())
-        .then(res => res.map(each => fetch(`http://localhost:8000/highScores/${each.id}`, { method: "DELETE" })))
+        .then(res => res.map(each => fetch(`https://plankton-app-fo6gv.ondigitalocean.app/highScores/${each.id}`, { method: "DELETE" })))
         .then(() => { return })
 }
 
 export const HighScoresPoster = (villageId, id) => {
     console.log(villageId, id)
-    return fetch(`http://localhost:8000/highScores/${id}`, {
+    return fetch(`https://plankton-app-fo6gv.ondigitalocean.app/highScores/${id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
@@ -153,7 +156,7 @@ export const HighScoresPoster = (villageId, id) => {
 
 
 export const HighScoresGetter = () => {
-    return fetch(`http://localhost:8000/highScores?_expand=village`)
+    return fetch(`https://plankton-app-fo6gv.ondigitalocean.app/highScores?_expand=village`)
         .then(res => res.json())
         .then((res) => { return res })
 }
