@@ -11,7 +11,7 @@ document.body.id = window.location.pathname
 
 const root = createRoot(container)
 root.render(
-  <BrowserRouter>
+  <BrowserRouter basename="/The-Villages">
     <CapTest />
   </BrowserRouter>
 );
