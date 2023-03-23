@@ -55,7 +55,7 @@ export const GameRunning = ({ started, startedSetterFunction, allCellReferences,
     })
 
     const speedSet = (speed) => {
-       setIterTime(speed)
+        setIterTime(speed)
     }
 
     const checkTheNeighborhood = (previousGen, previousPreviousGen) => { //calcs iterations, checks staleness
