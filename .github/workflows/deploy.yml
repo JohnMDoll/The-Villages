@@ -3,10 +3,10 @@ name: Build & deploy
 on:
   push:
     branches:
-      - DJANGO-SERVER-BRANCH
+      - gh-pages
   pull_request:
     branches:
-      - DJANGO-SERVER-BRANCH
+      - gh-pages
 
 jobs:
   build:
@@ -38,7 +38,7 @@ jobs:
     name: Deploy
     needs: build
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/DJANGO-SERVER-BRANCH'
+    if: github.ref == 'refs/heads/gh-pages'
 
     steps:
       - name: Download artifact
