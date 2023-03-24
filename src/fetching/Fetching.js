@@ -27,10 +27,11 @@ export const HandleLogin = (userName, password) => {
 
 // Register.js for ensuring new account not registered with dupe user name
 export const DuplicateUserNameCheck = (userName, password) => {
-    return fetch(`https://plankton-app-fo6gv.ondigitalocean.app/users?userName=${userName.userName}`)
+    return fetch(`https://plankton-app-fo6gv.ondigitalocean.app/users`)
         .then(res => res.json())
         .then(response => { 
-            if (response.length > 0) {
+            const res = response.find((r) => r.userName === userName.userName)
+            if (res !== undefined ) {
                 // Duplicate userName. No good.
                 window.alert("Account with that username already exists")
             }

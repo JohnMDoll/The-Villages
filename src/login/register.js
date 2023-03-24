@@ -36,7 +36,7 @@ export const Register = () => {
                         type="text"
                         onChange={evt => setUserName({ userName: evt.target.value })} />
                     <input required placeholder="password"
-                        type="password" value={password}
+                        type="password" 
                         onChange={evt => setPassword({ password: evt.target.value })} />
                     <div className="buttonHolder" id="register">
                         <button type="submit" id="register" onClick={handleRegister}
