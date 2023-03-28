@@ -47,7 +47,7 @@ export const Game = () => {
                 if (village.hasOwnProperty("maxGenerations")) {
                     localStorage.removeItem("this_village")
                     if (window.confirm("And they all lived, or didn't, in the same monotonous fashion, forever. The End.\nWould you like to create a new village?")) {
-                        window.location.refresh()
+                        window.location.reload()
                     } else { navigate("/home") }
                 }
             }
