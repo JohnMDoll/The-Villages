@@ -60,6 +60,7 @@ export const RegisterNewUser = (userName, password) => {
                     id: createdUser.id,
                     userName: createdUser.userName,
                 }))
+                window.alert("Welcome. Declare Yourself at the gate.")
             }
         })
 }

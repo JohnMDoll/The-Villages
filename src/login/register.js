@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { DuplicateUserNameCheck } from "../fetching/Fetching"
+import { DuplicateUserNameCheck, HandleLogin } from "../fetching/Fetching"
 import "./login.css"
 
 
@@ -8,22 +8,13 @@ export const Register = () => {
     document.body.id = "login"
     const navigate = useNavigate()
     const [userName, setUserName] = useState({ userName: "" })
-    const [user, setUser] = useState()
     const [password, setPassword] = useState({ password: "" })
 
     const handleRegister = (e) => {
         e.preventDefault()
         DuplicateUserNameCheck(userName, password)
-        const user = JSON.parse(localStorage.getItem("cap_user"))
-        if (user) { setUser(user) }
         navigate("/")
     }
-
-    useEffect(
-        () => {
-            if (user?.hasOwnProperty("id")) { navigate("/") }
-        }, [userName, user]
-    )
 
     return (<>
         <section className="login" id="register">
@@ -36,7 +27,7 @@ export const Register = () => {
                         type="text"
                         onChange={evt => setUserName({ userName: evt.target.value })} />
                     <input required placeholder="password"
-                        type="password" 
+                        type="password"
                         onChange={evt => setPassword({ password: evt.target.value })} />
                     <div className="buttonHolder" id="register">
                         <button type="submit" id="register" onClick={handleRegister}
