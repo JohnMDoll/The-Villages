@@ -4,33 +4,37 @@
 ## Project Overview
 
 This app was a JavaScript/React capstone project created about 2 months after starting a fullstack web dev course with Nashville Software School.
-It was required to have CRUD functionality, along with a few other requirements.
+It was required to have CRUD functionality, login/registration, ability for users to modify their own data but not that of others, etc..
 
-I decided to create this game because I wanted to make something very different from the curriculum and because I've always liked John Conway's [*Game of Life*](https://en.m.wikipedia.org/wiki/Conway's_Game_of_Life) (Wikipedia link)
+I decided to create this game because I wanted to make something very different from the curriculum and because I've always liked John Conway's [*Game of Life*](https://en.m.wikipedia.org/wiki/Conway's_Game_of_Life) (<- Wikipedia link)
 
 ## Design Decision Explanations
 
 The client is built with HTML, CSS, JavaScript and React.
 I wrote a new backend with Django/SQLite shortly before deployment, a change from the json database it originally used.
 
-This project was not intended to be made available publicly, but after several requests, it's now deployed for all to enjoy.
+This project was not intended to be made available publicly, but after several requests it's now deployed for all to enjoy.
+If you're reading this, please play a round or two so that next time I screenshotthe leaderboard I'm not the only person there!
 
 ## Feature Highlights
 
 #### Gorgeous custom artwork:
-
+![image](https://user-images.githubusercontent.com/101382066/228335497-c60edc70-ddb4-422e-8fa6-e36e6cb58745.png)
 
 #### Create villages of 3 different sizes and watch them play out. Speed or slow generations with The Villages' patented time-slider:
-
+![image](https://user-images.githubusercontent.com/101382066/228330862-12c30a8e-62cf-42f5-94a3-8cb5c99f4a2a.png)
+![image](https://user-images.githubusercontent.com/101382066/228330678-a8db5357-1768-45a1-aa11-818c6f963111.png)
+![image](https://user-images.githubusercontent.com/101382066/228330817-0e028ace-b5c0-4ab6-80a6-6a991470734a.png)
+![play](https://user-images.githubusercontent.com/101382066/228337758-8382b6ac-f92f-4050-8578-47fd8042c853.gif)
 
 #### Leaderboard:
-
+![image](https://user-images.githubusercontent.com/101382066/228332019-8c1908d3-71b9-4c53-b683-31d3a8537591.png)
 
 #### See stats of your top performing villages and rename, replay or modify a village you created:
-
+![image](https://user-images.githubusercontent.com/101382066/228332073-3ff6de37-05f9-423e-ad67-383e8c817ec2.png)
 
 #### Burn it all down:
-
+![BurnIt](https://user-images.githubusercontent.com/101382066/228335351-7e850728-5039-4c85-bc43-029e563699d1.gif)
 
 ## Tech Stack
 
