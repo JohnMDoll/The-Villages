@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/The-Villages/static/css/main.de9dcc68.css",
-    "main.js": "/The-Villages/static/js/main.73cb6df8.js",
+    "main.js": "/The-Villages/static/js/main.a68eeb02.js",
     "static/media/Burning.gif": "/The-Villages/static/media/Burning.f0a3b146551c228090ef.gif",
     "static/media/rick.gif": "/The-Villages/static/media/rick.b9ca2784edc1952a7179.gif",
     "static/media/background.jpg": "/The-Villages/static/media/background.94be6c422e39e9c95724.jpg",
@@ -12,10 +12,10 @@
     "static/media/200w.webp": "/The-Villages/static/media/200w.6634633aa139f384e705.webp",
     "index.html": "/The-Villages/index.html",
     "main.de9dcc68.css.map": "/The-Villages/static/css/main.de9dcc68.css.map",
-    "main.73cb6df8.js.map": "/The-Villages/static/js/main.73cb6df8.js.map"
+    "main.a68eeb02.js.map": "/The-Villages/static/js/main.a68eeb02.js.map"
   },
   "entrypoints": [
     "static/css/main.de9dcc68.css",
-    "static/js/main.73cb6df8.js"
+    "static/js/main.a68eeb02.js"
   ]
 }
