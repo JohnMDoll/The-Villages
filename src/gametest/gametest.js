@@ -13,7 +13,7 @@ export const Game = () => {
     const [gridLength, setGridLength] = useState(10) //how big the playing grid will be (it's a square, so just need 1 dimension)
     const existingVillage = JSON.parse(localStorage.getItem("this_village"))
     const [village, setVillage] = useState({
-        name: "",
+        name: "Unloved Village",
         gridLength: gridLength,
         userId: (JSON.parse(localStorage.getItem("cap_user")).id)
     })
